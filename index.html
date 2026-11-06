@@ -1,0 +1,2224 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La Primavera · Rescatista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<nav class="toc">
+  <a href="#g01">01 Acceso</a>
+  <a href="#g02">02 Operación</a>
+  <a href="#g03">03 Coordinación</a>
+  <a href="#g04">04 Informes</a>
+  <a href="#g05">05 Cuenta</a>
+  <a href="#g06">06 Administración</a>
+  <a href="#g07">07 Estados</a>
+  <a href="#g08">08 Perfiles</a>
+  <a href="#g09">09 Componentes</a>
+</nav>
+<main class="canvas">
+
+<!-- ##########################################################
+     01 ACCESO
+     ########################################################## -->
+<section class="group" id="g01">
+  <h2 class="group__title">01 Acceso</h2>
+  <div class="group__row">
+    <!-- 01 Acceso · Inicio de sesión -->
+    <section class="canvas__screen" id="login">
+      <p class="canvas__label">01 Acceso · Inicio de sesión</p>
+      <form class="phone phone--white" data-login-form>
+        <div class="statusbar">
+          <span>9:41</span>
+          <span class="statusbar__icons">
+            <img src="assets/icons/ios-signal.svg" width="17" height="17" alt="">
+            <img src="assets/icons/ios-wifi.svg" width="17" height="17" alt="">
+            <img src="assets/icons/ios-battery.svg" width="23" height="23" alt="">
+          </span>
+        </div>
+
+        <div class="hero">
+          <img class="hero__photo" src="assets/img/bosque-pino-encino.png" alt="Bosque de pino y encino">
+          <div class="hero__shade"></div>
+          <div class="hero__emblem"><img src="assets/icons/trees.svg" width="30" height="30" alt=""></div>
+          <div>
+            <p class="hero__title">Bosque La Primavera</p>
+            <p class="hero__subtitle">Respuesta y Monitoreo</p>
+            <p class="hero__tagline">Cuidar el bosque. Conectar la respuesta.</p>
+          </div>
+        </div>
+
+        <div class="content" style="min-height:0;padding:24px;gap:19px">
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <h1 class="display">Bienvenido de nuevo</h1>
+            <p class="text-muted" style="font-size:13px;line-height:1.45">Ingresa con tu cuenta institucional.</p>
+          </div>
+
+          <label class="field">
+            <span class="field__body">
+              <span class="field__label">Correo institucional</span>
+              <input class="field__control" type="email" name="correo" value="ana.torres@brigadas.demo" required>
+            </span>
+            <img src="assets/icons/mail.svg" width="18" height="18" alt="">
+          </label>
+
+          <label class="field">
+            <span class="field__body">
+              <span class="field__label">Contraseña</span>
+              <input class="field__control" type="password" name="password" value="demo-password" required data-password>
+            </span>
+            <button type="button" aria-label="Mostrar contraseña" data-toggle-password><img src="assets/icons/eye-off.svg" width="18" height="18" alt=""></button>
+          </label>
+
+          <div class="section-header">
+            <label class="checkbox">
+              <input type="checkbox" checked>
+              <img class="cb-off" src="assets/icons/square.svg" width="18" height="18" alt="">
+              <img class="cb-on" src="assets/icons/square-check.svg" width="18" height="18" alt="">
+              Recordar sesión
+            </label>
+            <a href="#login" class="link">Recuperar acceso</a>
+          </div>
+
+          <button type="submit" class="btn btn--primary">
+            <img src="assets/icons/arrow-right.svg" width="19" height="19" alt="">
+            Iniciar sesión
+          </button>
+
+          <p class="text-11 text-muted" style="display:flex;gap:7px;justify-content:center">
+            <img src="assets/icons/shield-check-sm.svg" width="16" height="16" alt="">
+            Acceso según tu rol y permisos
+          </p>
+
+          <div style="display:flex;flex-direction:column;align-items:center;gap:9px;padding-top:10px;text-align:center">
+            <span class="tag tag--success">ENTORNO DE DEMOSTRACIÓN</span>
+            <p class="text-11 text-muted">Proyecto universitario · Datos ficticios No sustituye a los servicios de emergencia.</p>
+          </div>
+        </div>
+
+        <p class="text-11 text-muted" style="text-align:center;padding:0 24px 24px">¿Necesitas una cuenta? Contacta a tu coordinación.</p>
+      </form>
+    </section>
+  </div>
+</section>
+
+<!-- ##########################################################
+     02 OPERACIÓN · RESCATISTA
+     ########################################################## -->
+<section class="group" id="g02">
+  <h2 class="group__title">02 Operación · Rescatista</h2>
+  <div class="group__row">
+  <!-- =====================================================
+       1. MAPA OPERATIVO
+       ===================================================== -->
+  <section class="canvas__screen" id="mapa">
+    <p class="canvas__label">02 Operación · Mapa operativo</p>
+    <div class="phone">
+      <header class="header">
+        <p class="header__eyebrow">LA PRIMAVERA · OPERACIÓN / RESCATISTA</p>
+        <div class="header__row">
+          <div class="header__text">
+            <h1 class="header__title">Mapa operativo</h1>
+            <p class="header__subtitle">Las Planillas · Ubicación disponible</p>
+          </div>
+          <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+        </div>
+      </header>
+
+      <div class="content content--flush">
+        <div>
+          <label class="search-bar">
+            <img src="assets/icons/search.svg" width="19" height="19" alt="">
+            <input type="search" placeholder="Buscar sendero, zona o incidente">
+            <button aria-label="Filtros"><img src="assets/icons/sliders-horizontal.svg" width="20" height="20" alt=""></button>
+          </label>
+
+          <div class="map" data-map>
+            <div class="map__layer" data-map-layer data-terrain>
+
+              <span class="map__name" style="left:29px;top:32px">RÍO CALIENTE</span>
+              <span class="map__name map__name--small" style="left:176px;top:92px">Cerro de San Miguel</span>
+              <span class="map__name" style="left:44px;top:287px">LAS PLANILLAS</span>
+              <span class="map__name map__name--small" style="left:53px;top:240px">Los Toboganes</span>
+              <span class="map__name" style="left:268px;top:312px">EL COLLI</span>
+              <span class="map__name map__name--small" style="left:202px;top:180px">Sendero principal</span>
+
+              <a href="#detalle" class="marker" style="left:152px;top:197px" title="INC-026-041 · Excursionista lesionada">
+                <span class="marker__dot marker__dot--danger"><img src="assets/icons/cross-marker.svg" width="21" height="21" alt=""></span>
+                <span class="marker__ref">041</span>
+              </a>
+              <a href="#incidentes" class="marker" style="left:301px;top:280px" title="INC-026-049 · Avistamiento de humo">
+                <span class="marker__dot"><img src="assets/icons/flame-marker.svg" width="16" height="16" alt=""></span>
+                <span class="marker__ref">049</span>
+              </a>
+              <a href="#incidentes" class="marker" style="left:85px;top:73px" title="INC-026-038 · Senderista desorientado">
+                <span class="marker__dot"><img src="assets/icons/footprints-marker.svg" width="16" height="16" alt=""></span>
+                <span class="marker__ref">038</span>
+              </a>
+
+              <img src="assets/map/halo-de-ubicacion.svg" width="36" height="36" style="left:220px;top:298px" alt="">
+              <img src="assets/map/mi-ubicacion.svg" width="14" height="14" style="left:231px;top:309px" alt="Mi ubicación">
+            </div>
+
+            <div class="map__compass">
+              <span>N</span>
+              <img src="assets/icons/navigation-2.svg" width="20" height="20" alt="">
+            </div>
+
+            <div class="map__controls">
+              <div class="map__zoom">
+                <button data-zoom="in" aria-label="Acercar"><img src="assets/icons/plus-map.svg" width="20" height="20" alt=""></button>
+                <button data-zoom="out" aria-label="Alejar"><img src="assets/icons/minus.svg" width="20" height="20" alt=""></button>
+              </div>
+              <button class="map__btn" aria-label="Capas del mapa"><img src="assets/icons/layers.svg" width="20" height="20" alt=""></button>
+              <button class="map__btn" data-zoom="reset" aria-label="Centrar ubicación"><img src="assets/icons/locate-fixed-map.svg" width="20" height="20" alt=""></button>
+            </div>
+
+            <div class="map__scale">
+              <span>0               500 m</span>
+              <span class="map__scale-bar"></span>
+            </div>
+            <span class="map__source" style="left:306px;top:343px">Cartografía ilustrativa</span>
+          </div>
+
+          <div class="legend">
+            <span class="legend__item"><img src="assets/icons/cross-legend.svg" width="14" height="14" alt="">Rescate</span>
+            <span class="legend__item"><img src="assets/icons/flame-legend.svg" width="14" height="14" alt="">Humo</span>
+            <span class="legend__item"><img src="assets/icons/footprints-legend.svg" width="14" height="14" alt="">Búsqueda</span>
+            <span class="text-muted">- - Sendero</span>
+          </div>
+        </div>
+
+        <div class="content" style="min-height:0;padding-top:0;gap:12px">
+          <div class="section-header">
+            <span class="tag tag--success">12 incidentes activos</span>
+            <span class="text-11 text-muted">Vista demostrativa</span>
+          </div>
+
+          <a href="#detalle" class="incident-card is-selected">
+            <div class="incident-card__row">
+              <span class="incident-card__id">INC-026-041 · 09:12</span>
+              <span class="tag tag--danger">Alta</span>
+            </div>
+            <div>
+              <p class="incident-card__title">Excursionista lesionada</p>
+              <p class="incident-card__place">Los Toboganes · Las Planillas</p>
+            </div>
+            <div class="incident-card__row">
+              <span class="tag tag--info">En atención</span>
+              <span class="incident-card__meta">Ver detalle →</span>
+            </div>
+          </a>
+
+          <button class="btn btn--primary">
+            <img src="assets/icons/navigation.svg" width="19" height="19" alt="">
+            Iniciar ruta al incidente · 1,8 km
+          </button>
+        </div>
+      </div>
+
+      <nav class="tabbar" data-tabbar="rescatista" data-active="mapa"></nav>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       2. LISTA DE INCIDENTES
+       ===================================================== -->
+  <section class="canvas__screen" id="incidentes">
+    <p class="canvas__label">02 Operación · Lista de incidentes</p>
+    <div class="phone">
+      <header class="header">
+        <p class="header__eyebrow">LA PRIMAVERA · OPERACIÓN / RESCATISTA</p>
+        <div class="header__row">
+          <div class="header__text">
+            <h1 class="header__title">Incidentes</h1>
+            <p class="header__subtitle">19 de octubre de 2026 · 12 activos</p>
+          </div>
+          <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+        </div>
+      </header>
+
+      <div class="content">
+        <label class="field">
+          <span class="field__body">
+            <span class="field__label">Buscar incidente</span>
+            <input class="field__control" type="search" placeholder="Nombre, folio o zona" data-incident-search>
+          </span>
+          <img src="assets/icons/search-field.svg" width="18" height="18" alt="">
+        </label>
+
+        <div class="chips" data-chips>
+          <button class="chip is-active">Activos · 12</button>
+          <button class="chip">Misiones · 1</button>
+          <button class="chip">Cerrados · 36</button>
+        </div>
+
+        <div class="section-header">
+          <span class="text-12 text-muted">Prioridad y más recientes</span>
+          <button class="link" style="display:flex;gap:5px;align-items:flex-start">
+            <img src="assets/icons/sliders-filter.svg" width="16" height="16" alt="">Filtrar
+          </button>
+        </div>
+
+        <a href="#detalle" class="incident-card is-selected" data-incident>
+          <div class="incident-card__row">
+            <span class="incident-card__id">INC-026-041 · 09:12</span>
+            <span class="tag tag--danger">Alta</span>
+          </div>
+          <div>
+            <p class="incident-card__title">Excursionista lesionada</p>
+            <p class="incident-card__place">Los Toboganes · Las Planillas</p>
+          </div>
+          <div class="incident-card__row">
+            <span class="tag tag--info">En atención</span>
+            <span class="incident-card__meta">Ver detalle →</span>
+          </div>
+        </a>
+
+        <a href="#detalle" class="incident-card" data-incident>
+          <div class="incident-card__row">
+            <span class="incident-card__id">INC-026-049 · 09:38</span>
+            <span class="tag tag--warning">Media</span>
+          </div>
+          <div>
+            <p class="incident-card__title">Avistamiento de humo</p>
+            <p class="incident-card__place">El Colli · Acceso oriente</p>
+          </div>
+          <div class="incident-card__row">
+            <span class="tag tag--warning">Pendiente</span>
+            <span class="incident-card__meta">Por asignar</span>
+          </div>
+        </a>
+
+        <a href="#detalle" class="incident-card" data-incident>
+          <div class="incident-card__row">
+            <span class="incident-card__id">INC-026-038 · 08:50</span>
+            <span class="tag tag--warning">Media</span>
+          </div>
+          <div>
+            <p class="incident-card__title">Senderista desorientado</p>
+            <p class="incident-card__place">Río Caliente · Sector norte</p>
+          </div>
+          <div class="incident-card__row">
+            <span class="tag tag--info">En atención</span>
+            <span class="incident-card__meta">Brigada Alfa</span>
+          </div>
+        </a>
+
+        <a href="#detalle" class="incident-card" data-incident>
+          <div class="incident-card__row">
+            <span class="incident-card__id">INC-026-035 · 08:24</span>
+            <span class="tag tag--success">Baja</span>
+          </div>
+          <div>
+            <p class="incident-card__title">Árbol sobre el sendero</p>
+            <p class="incident-card__place">La Cebada · Sector poniente</p>
+          </div>
+          <div class="incident-card__row">
+            <span class="tag tag--warning">Pendiente</span>
+            <span class="incident-card__meta">Por asignar</span>
+          </div>
+        </a>
+
+        <p class="text-11 text-muted" style="text-align:center">Mostrando 4 de 12 activos · Datos demostrativos</p>
+
+        <a href="#registro" class="btn btn--primary">
+          <img src="assets/icons/plus-white.svg" width="19" height="19" alt="">
+          Registrar incidente
+        </a>
+      </div>
+
+      <nav class="tabbar" data-tabbar="rescatista" data-active="incidentes"></nav>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       3. DETALLE DE INCIDENTE
+       ===================================================== -->
+  <section class="canvas__screen" id="detalle">
+    <p class="canvas__label">02 Operación · Detalle de incidente</p>
+    <div class="phone">
+      <header class="header">
+        <p class="header__eyebrow">LA PRIMAVERA · OPERACIÓN / RESCATISTA</p>
+        <div class="header__row">
+          <a href="#incidentes" aria-label="Regresar"><img src="assets/icons/arrow-left.svg" width="22" height="22" alt=""></a>
+          <div class="header__text">
+            <h1 class="header__title">Detalle de incidente</h1>
+            <p class="header__subtitle">INC-026-041 · Reportado hoy, 09:12</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <div style="display:flex;gap:8px">
+          <span class="tag tag--danger">Alta · Rescate</span>
+          <span class="tag tag--info" data-status>En atención</span>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <h2 style="font-size:24px;font-weight:800;line-height:1.2">Excursionista lesionada</h2>
+          <p class="text-muted" style="font-size:14px;line-height:1.45">Lesión de tobillo en descenso. Una persona consciente, acompañada y sin movilidad autónoma.</p>
+        </div>
+
+        <div class="card">
+          <div class="info-row">
+            <img src="assets/icons/map-pin.svg" width="24" height="24" alt="">
+            <div class="info-row__text">
+              <p class="info-row__title">Los Toboganes</p>
+              <p class="info-row__subtitle">Sector Las Planillas · Sendero principal</p>
+            </div>
+            <a href="#mapa" class="info-row__action">Ver mapa</a>
+          </div>
+          <div class="separator"></div>
+          <p class="text-12 text-muted">20.6214, −103.5352 · Precisión GPS ±8 m Acceso sugerido: caseta Las Planillas.</p>
+        </div>
+
+        <div class="map map--compact">
+          <div class="map__layer" data-terrain>
+
+            <span class="map__name" style="left:29px;top:32px">RÍO CALIENTE</span>
+            <span class="map__name map__name--small" style="left:176px;top:92px">Cerro de San Miguel</span>
+            <span class="map__name" style="left:44px;top:198px">LAS PLANILLAS</span>
+            <span class="map__name map__name--small" style="left:53px;top:240px">Los Toboganes</span>
+
+            <span class="marker" style="left:152px;top:197px">
+              <span class="marker__dot marker__dot--danger"><img src="assets/icons/cross-marker.svg" width="21" height="21" alt=""></span>
+              <span class="marker__ref">041</span>
+            </span>
+
+            <img src="assets/map/halo-de-ubicacion.svg" width="36" height="36" style="left:220px;top:200px" alt="">
+            <img src="assets/map/mi-ubicacion.svg" width="14" height="14" style="left:231px;top:211px" alt="Mi ubicación">
+          </div>
+
+          <div class="map__compass">
+            <span>N</span>
+            <img src="assets/icons/navigation-2.svg" width="20" height="20" alt="">
+          </div>
+          <div class="map__scale">
+            <span>0               500 m</span>
+            <span class="map__scale-bar"></span>
+          </div>
+          <span class="map__source" style="left:266px;top:245px">Cartografía ilustrativa</span>
+        </div>
+
+        <div class="section-header">
+          <h3 class="section-header__title">Equipo asignado</h3>
+        </div>
+
+        <div class="card">
+          <div class="info-row">
+            <img src="assets/icons/users.svg" width="24" height="24" alt="">
+            <div class="info-row__text">
+              <p class="info-row__title">Brigada Bravo</p>
+              <p class="info-row__subtitle">Ana Torres · Responsable de misión</p>
+            </div>
+            <span class="info-row__action">4 personas</span>
+          </div>
+          <div class="incident-card__row">
+            <span class="text-12 text-muted">En ruta · A 1,8 km</span>
+            <span class="tag tag--info">Llegada estimada: 12 min</span>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <h3 class="section-header__title">Cronología</h3>
+          <button class="link" data-add-event>Añadir avance</button>
+        </div>
+
+        <div class="card timeline" data-timeline>
+          <div class="timeline__event">
+            <span class="timeline__time">09:29</span>
+            <div>
+              <p class="timeline__title">Brigada en ruta</p>
+              <p class="timeline__desc">Salida desde caseta Las Planillas.</p>
+            </div>
+          </div>
+          <div class="timeline__event">
+            <span class="timeline__time">09:18</span>
+            <div>
+              <p class="timeline__title">Misión asignada a Bravo</p>
+              <p class="timeline__desc">Confirmada por Luis Méndez.</p>
+            </div>
+          </div>
+          <div class="timeline__event">
+            <span class="timeline__time">09:12</span>
+            <div>
+              <p class="timeline__title">Incidente registrado</p>
+              <p class="timeline__desc">Reporte de visitante validado.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn--primary" data-update-status>
+          <img src="assets/icons/clipboard-check.svg" width="19" height="19" alt="">
+          Actualizar estado
+        </button>
+      </div>
+
+      <nav class="tabbar" data-tabbar="rescatista" data-active="incidentes"></nav>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       4. REGISTRAR INCIDENTE
+       ===================================================== -->
+  <section class="canvas__screen" id="registro">
+    <p class="canvas__label">02 Operación · Registro de incidente</p>
+    <form class="phone" data-report-form>
+      <header class="header">
+        <p class="header__eyebrow">LA PRIMAVERA · OPERACIÓN / RESCATISTA</p>
+        <div class="header__row">
+          <a href="#incidentes" aria-label="Regresar"><img src="assets/icons/arrow-left.svg" width="22" height="22" alt=""></a>
+          <div class="header__text">
+            <h1 class="header__title">Registrar incidente</h1>
+            <p class="header__subtitle">Nuevo reporte · Campos con * obligatorios</p>
+          </div>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="notice">
+          <img src="assets/icons/shield-check.svg" width="17" height="17" alt="">
+          <p>Tu seguridad primero. Reporta desde un punto seguro y evita acercarte al humo.</p>
+        </div>
+
+        <div class="section-header">
+          <h3 class="section-header__title">Datos del incidente</h3>
+        </div>
+
+        <label class="field">
+          <span class="field__body">
+            <span class="field__label">Tipo de incidente *</span>
+            <select class="field__control" name="tipo" required>
+              <option>Avistamiento de humo</option>
+              <option>Rescate</option>
+              <option>Búsqueda de persona</option>
+              <option>Obstrucción de sendero</option>
+            </select>
+          </span>
+          <img src="assets/icons/chevron-down.svg" width="18" height="18" alt="">
+        </label>
+
+        <div class="severity">
+          <p class="text-12 bold">Severidad inicial *</p>
+          <div class="severity__options" data-severity>
+            <button type="button" class="severity__option" data-level="baja">Baja</button>
+            <button type="button" class="severity__option is-active" data-level="media">Media</button>
+            <button type="button" class="severity__option" data-level="alta">Alta</button>
+          </div>
+          <p class="text-11 text-muted" data-severity-hint>Media: requiere verificación, sin riesgo inmediato confirmado.</p>
+        </div>
+
+        <label class="field field--tall">
+          <span class="field__body">
+            <span class="field__label">Descripción *</span>
+            <textarea class="field__control" name="descripcion" rows="3" required>Columna ligera de humo visible desde el acceso oriente. No se observan personas en riesgo.</textarea>
+          </span>
+        </label>
+
+        <div class="section-header">
+          <h3 class="section-header__title">Ubicación y evidencia</h3>
+        </div>
+
+        <label class="field">
+          <span class="field__body">
+            <span class="field__label">Zona / sector *</span>
+            <select class="field__control" name="zona" required>
+              <option>El Colli · Acceso oriente</option>
+              <option>Las Planillas · Los Toboganes</option>
+              <option>Río Caliente · Sector norte</option>
+              <option>La Cebada · Sector poniente</option>
+            </select>
+          </span>
+          <img src="assets/icons/chevron-down.svg" width="18" height="18" alt="">
+        </label>
+
+        <div class="card">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <img src="assets/icons/locate-fixed.svg" width="21" height="21" alt="">
+            <div style="flex:1;display:flex;flex-direction:column;gap:4px;line-height:1.45">
+              <p class="bold" style="font-size:13px">20.6491, −103.5094</p>
+              <p class="text-11 text-muted">GPS capturado a las 09:38 · ±12 m</p>
+            </div>
+            <span class="tag tag--info">GPS</span>
+          </div>
+          <a href="#mapa" class="link">Ajustar ubicación en el mapa →</a>
+        </div>
+
+        <label class="dropzone">
+          <img src="assets/icons/camera.svg" width="25" height="25" alt="">
+          <span style="flex:1;display:flex;flex-direction:column;gap:3px">
+            <span class="bold" style="font-size:13px">Añadir foto o archivo</span>
+            <span class="text-11 text-muted" data-file-hint>Opcional · Hasta 3 archivos de 10 MB</span>
+          </span>
+          <img src="assets/icons/plus.svg" width="18" height="18" alt="">
+          <input type="file" multiple accept="image/*,.pdf" data-file-input>
+        </label>
+
+        <label class="field">
+          <span class="field__body">
+            <span class="field__label">Personas afectadas</span>
+            <input class="field__control" name="personas" value="0 · Sin personas visibles">
+          </span>
+          <img src="assets/icons/users-field.svg" width="18" height="18" alt="">
+        </label>
+
+        <p class="text-11 text-muted">Reporta: Ana Torres · Brigada Bravo El reporte quedará pendiente de validación.</p>
+
+        <button type="submit" class="btn btn--primary">
+          <img src="assets/icons/send.svg" width="19" height="19" alt="">
+          Registrar incidente
+        </button>
+        <button type="button" class="btn btn--secondary" data-save-draft>Guardar borrador</button>
+      </div>
+
+      <nav class="tabbar" data-tabbar="rescatista" data-active="incidentes"></nav>
+    </form>
+  </section>
+  </div>
+</section>
+
+<!-- ##########################################################
+     03 COORDINACIÓN · COORDINADOR
+     ########################################################## -->
+<section class="group" id="g03">
+  <h2 class="group__title">03 Coordinación · Coordinador</h2>
+  <div class="group__row">
+    <!-- 03 Coordinación · Dashboard -->
+    <section class="canvas__screen" id="dashboard">
+      <p class="canvas__label">03 Coordinación · Dashboard</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · COORDINACIÓN / COORDINADOR</p>
+          <div class="header__row">
+            <div class="header__text">
+              <h1 class="header__title">Resumen operativo</h1>
+              <p class="header__subtitle">Hola, Luis · Lunes 19 de octubre</p>
+            </div>
+            <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="section-header">
+            <span class="bold" style="font-size:13px;line-height:1.45">1–19 oct 2026</span>
+            <span class="tag" style="background:var(--background);color:var(--muted)">Corte: 09:41</span>
+          </div>
+
+          <div class="notice">
+            <img src="assets/icons/info.svg" width="17" height="17" alt="">
+            <p>Datos demostrativos · Sin uso operativo</p>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div class="stats">
+              <div class="stat">
+                <p class="stat__label">Incidentes activos</p>
+                <p class="stat__value" style="color:var(--danger)">12</p>
+                <p class="stat__note">3 de severidad alta</p>
+              </div>
+              <div class="stat">
+                <p class="stat__label">Brigadas en campo</p>
+                <p class="stat__value">4 / 6</p>
+                <p class="stat__note">16 de 24 integrantes</p>
+              </div>
+            </div>
+            <div class="stats">
+              <div class="stat">
+                <p class="stat__label">Reportados en el mes</p>
+                <p class="stat__value">48</p>
+                <p class="stat__note">+20 % vs. 1–19 sep</p>
+              </div>
+              <div class="stat">
+                <p class="stat__label">Respuesta promedio</p>
+                <p class="stat__value" style="color:var(--primary)">18 min</p>
+                <p class="stat__note">4 min menos que sep</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Incidencia del mes</h3>
+            <a href="#comparacion" class="link">Comparar →</a>
+          </div>
+
+          <div class="card">
+            <p class="text-12 text-muted">Incidentes por intervalo · Octubre 2026</p>
+            <div class="bars">
+              <div class="bars__col"><span class="bars__value">9</span><span class="bars__bar" style="height:54px"></span><span class="bars__label">1–5 oct</span></div>
+              <div class="bars__col"><span class="bars__value">13</span><span class="bars__bar" style="height:78px"></span><span class="bars__label">6–10 oct</span></div>
+              <div class="bars__col"><span class="bars__value">12</span><span class="bars__bar" style="height:72px"></span><span class="bars__label">11–15 oct</span></div>
+              <div class="bars__col"><span class="bars__value">14</span><span class="bars__bar is-current" style="height:84px"></span><span class="bars__label">16–19 oct</span></div>
+            </div>
+            <p class="footnote">Total del periodo: 48 incidentes</p>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Estado de la respuesta</h3>
+          </div>
+
+          <div class="card">
+            <div style="display:flex;align-items:center;gap:22px">
+              <div class="donut">
+                <img src="assets/img/donut-total.svg" width="104" height="104" alt="">
+                <img src="assets/img/donut-cerrados.svg" width="104" height="104" alt="">
+                <span class="donut__value">75 %</span>
+                <span class="donut__label">cerrados</span>
+              </div>
+              <div class="keys">
+                <div class="key"><span class="key__dot" style="background:var(--primary)"></span><span class="key__label">Cerrados</span><span class="key__value">36</span></div>
+                <div class="key"><span class="key__dot" style="background:var(--info)"></span><span class="key__label">En atención</span><span class="key__value">7</span></div>
+                <div class="key"><span class="key__dot" style="background:var(--home-indicator)"></span><span class="key__label">Asignados</span><span class="key__value">2</span></div>
+                <div class="key"><span class="key__dot" style="background:var(--warning)"></span><span class="key__label">Pendientes</span><span class="key__value">3</span></div>
+              </div>
+            </div>
+          </div>
+
+          <a href="#brigadas" class="card card--soft">
+            <span class="info-row">
+              <img src="assets/icons/users.svg" width="24" height="24" alt="">
+              <span class="info-row__text">
+                <span class="info-row__title" style="display:block">2 brigadas disponibles</span>
+                <span class="info-row__subtitle" style="display:block">Charlie y Foxtrot · Listas para asignar</span>
+              </span>
+              <span class="info-row__action">Asignar →</span>
+            </span>
+          </a>
+        </div>
+
+        <nav class="tabbar" data-tabbar="coordinador" data-active="resumen"></nav>
+      </div>
+    </section>
+
+    <!-- 03 Coordinación · Comparación histórica -->
+    <section class="canvas__screen" id="comparacion">
+      <p class="canvas__label">03 Coordinación · Comparación histórica</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · COORDINACIÓN / COORDINADOR</p>
+          <div class="header__row">
+            <a href="#dashboard" aria-label="Regresar"><img src="assets/icons/arrow-left.svg" width="22" height="22" alt=""></a>
+            <div class="header__text">
+              <h1 class="header__title">Comparación histórica</h1>
+              <p class="header__subtitle">Periodos equivalentes · 19 días cada uno</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="chips" data-chips>
+            <button class="chip is-active">Mensual</button>
+            <button class="chip">Trimestral</button>
+            <button class="chip">Personalizado</button>
+          </div>
+
+          <div class="card">
+            <div class="key" style="gap:10px;font-size:13px">
+              <span class="key__dot" style="width:9px;height:9px;margin-top:5px;background:var(--primary)"></span>
+              <span class="bold">Actual: 1–19 oct 2026</span>
+            </div>
+            <div class="separator"></div>
+            <div class="key" style="gap:10px;font-size:13px">
+              <span class="key__dot" style="width:9px;height:9px;margin-top:5px;background:var(--chart-ref)"></span>
+              <span>Referencia: 1–19 sep 2026</span>
+            </div>
+          </div>
+
+          <div class="notice">
+            <img src="assets/icons/info.svg" width="17" height="17" alt="">
+            <p>Datos demostrativos · Sin uso operativo</p>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Volumen de incidentes</h3>
+          </div>
+
+          <div class="card">
+            <div class="section-header">
+              <div>
+                <p style="font-size:32px;font-weight:800;line-height:1.2">48</p>
+                <p class="text-12 text-muted">vs. 40 en septiembre</p>
+              </div>
+              <span class="tag tag--warning">↑ 20 %</span>
+            </div>
+            <div class="bars bars--pair">
+              <div class="bars__col">
+                <div class="bars__pair">
+                  <div><span>7</span><span class="bars__bar is-ref" style="height:42px"></span></div>
+                  <div><span class="bold">9</span><span class="bars__bar is-current" style="height:54px"></span></div>
+                </div>
+                <span class="bars__label">Días 1–5</span>
+              </div>
+              <div class="bars__col">
+                <div class="bars__pair">
+                  <div><span>10</span><span class="bars__bar is-ref" style="height:60px"></span></div>
+                  <div><span class="bold">13</span><span class="bars__bar is-current" style="height:78px"></span></div>
+                </div>
+                <span class="bars__label">6–10</span>
+              </div>
+              <div class="bars__col">
+                <div class="bars__pair">
+                  <div><span>11</span><span class="bars__bar is-ref" style="height:66px"></span></div>
+                  <div><span class="bold">12</span><span class="bars__bar is-current" style="height:72px"></span></div>
+                </div>
+                <span class="bars__label">11–15</span>
+              </div>
+              <div class="bars__col">
+                <div class="bars__pair">
+                  <div><span>12</span><span class="bars__bar is-ref" style="height:72px"></span></div>
+                  <div><span class="bold">14</span><span class="bars__bar is-current" style="height:84px"></span></div>
+                </div>
+                <span class="bars__label">16–19</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Indicadores comparados</h3>
+          </div>
+
+          <div class="card compare">
+            <div class="compare__row compare__row--head"><span>Indicador</span><span>Sep</span><span>Oct</span></div>
+            <div class="separator"></div>
+            <div class="compare__row"><span>Respuesta media</span><span>22 min</span><span>18 min</span></div>
+            <div class="compare__row"><span>Incidentes cerrados</span><span>32</span><span>36</span></div>
+            <div class="compare__row"><span>Tasa de cierre</span><span>80 %</span><span>75 %</span></div>
+            <p class="footnote">Tasa de cierre = cerrados / total del periodo.</p>
+          </div>
+
+          <div class="notice notice--info">
+            <img src="assets/icons/chart-info.svg" width="17" height="17" alt="">
+            <p>La respuesta mejoró 4 min; el aumento de reportes mantiene 12 incidentes activos.</p>
+          </div>
+        </div>
+
+        <nav class="tabbar" data-tabbar="coordinador" data-active="resumen"></nav>
+      </div>
+    </section>
+
+    <!-- 03 Coordinación · Zonas críticas -->
+    <section class="canvas__screen" id="zonas">
+      <p class="canvas__label">03 Coordinación · Zonas críticas</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · COORDINACIÓN / COORDINADOR</p>
+          <div class="header__row">
+            <div class="header__text">
+              <h1 class="header__title">Zonas críticas</h1>
+              <p class="header__subtitle">12 incidentes activos · Corte 19 oct, 09:41</p>
+            </div>
+            <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="chips" data-chips>
+            <button class="chip is-active">Severidad</button>
+            <button class="chip">Concentración</button>
+            <button class="chip">Brigadas</button>
+          </div>
+
+          <div class="map" style="height:408px" data-map>
+            <div class="map__layer" data-map-layer data-terrain>
+              <img src="assets/map/zonas-de-severidad.png" width="337" height="191" style="left:67px;top:147px" alt="">
+              <img src="assets/map/zona-atencion-media.png" width="135" height="112" style="left:30px;top:31px" alt="">
+
+              <span class="map__name" style="left:29px;top:32px">RÍO CALIENTE</span>
+              <span class="map__name map__name--small" style="left:176px;top:92px">Cerro de San Miguel</span>
+              <span class="map__name" style="left:44px;top:287px">LAS PLANILLAS</span>
+              <span class="map__name map__name--small" style="left:53px;top:240px">Los Toboganes</span>
+              <span class="map__name" style="left:268px;top:352px">EL COLLI</span>
+              <span class="map__name map__name--small" style="left:202px;top:180px">Sendero principal</span>
+
+              <span class="marker" style="left:152px;top:197px">
+                <span class="marker__dot marker__dot--danger"><img src="assets/icons/cross-marker.svg" width="21" height="21" alt=""></span>
+                <span class="marker__ref">A · Alta</span>
+              </span>
+              <span class="marker" style="left:301px;top:280px">
+                <span class="marker__dot" style="background:var(--danger)"><img src="assets/icons/flame-marker.svg" width="16" height="16" alt=""></span>
+                <span class="marker__ref">B · Alta</span>
+              </span>
+              <span class="marker" style="left:85px;top:73px">
+                <span class="marker__dot"><img src="assets/icons/footprints-marker.svg" width="16" height="16" alt=""></span>
+                <span class="marker__ref">C · Media</span>
+              </span>
+
+              <img src="assets/map/halo-de-ubicacion.svg" width="36" height="36" style="left:220px;top:317px" alt="">
+              <img src="assets/map/mi-ubicacion.svg" width="14" height="14" style="left:231px;top:328px" alt="Mi ubicación">
+            </div>
+
+            <div class="map__compass">
+              <span>N</span>
+              <img src="assets/icons/navigation-2.svg" width="20" height="20" alt="">
+            </div>
+            <div class="map__controls">
+              <div class="map__zoom">
+                <button data-zoom="in" aria-label="Acercar"><img src="assets/icons/plus-map.svg" width="20" height="20" alt=""></button>
+                <button data-zoom="out" aria-label="Alejar"><img src="assets/icons/minus.svg" width="20" height="20" alt=""></button>
+              </div>
+              <button class="map__btn" aria-label="Capas del mapa"><img src="assets/icons/layers.svg" width="20" height="20" alt=""></button>
+              <button class="map__btn" data-zoom="reset" aria-label="Centrar ubicación"><img src="assets/icons/locate-fixed-map.svg" width="20" height="20" alt=""></button>
+            </div>
+            <div class="map__scale">
+              <span>0               500 m</span>
+              <span class="map__scale-bar"></span>
+            </div>
+            <span class="map__source" style="left:266px;top:383px">Cartografía ilustrativa</span>
+          </div>
+
+          <div class="card" style="gap:10px">
+            <p class="text-12 bold">Severidad por zona</p>
+            <div style="display:flex;gap:15px">
+              <span class="swatch"><span style="background:var(--danger)"></span>A / B · Alta</span>
+              <span class="swatch"><span style="background:var(--warning)"></span>C · Media</span>
+              <span class="swatch"><span style="background:var(--primary)"></span>Baja</span>
+            </div>
+            <p class="footnote">Severidad de zona = mayor nivel de sus incidentes activos.</p>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Prioridad territorial</h3>
+            <span class="link">3 zonas</span>
+          </div>
+
+          <div class="card" style="gap:7px">
+            <div class="incident-card__row"><span class="bold" style="font-size:15px;line-height:1.45">A · Las Planillas</span><span class="tag tag--danger">Alta</span></div>
+            <p class="text-12 text-muted">5 activos · 2 alta, 2 media, 1 baja</p>
+          </div>
+          <div class="card" style="gap:7px">
+            <div class="incident-card__row"><span class="bold" style="font-size:15px;line-height:1.45">B · El Colli</span><span class="tag tag--danger">Alta</span></div>
+            <p class="text-12 text-muted">4 activos · 1 alta, 2 media, 1 baja</p>
+          </div>
+          <div class="card" style="gap:7px">
+            <div class="incident-card__row"><span class="bold" style="font-size:15px;line-height:1.45">C · Río Caliente</span><span class="tag tag--warning">Media</span></div>
+            <p class="text-12 text-muted">3 activos · 2 media, 1 baja</p>
+          </div>
+
+          <p class="footnote">Demostración · Zonas y límites ilustrativos, no oficiales.</p>
+        </div>
+
+        <nav class="tabbar" data-tabbar="coordinador" data-active="zonas"></nav>
+      </div>
+    </section>
+
+    <!-- 03 Coordinación · Asignación de brigadas -->
+    <section class="canvas__screen" id="brigadas">
+      <p class="canvas__label">03 Coordinación · Asignación de brigadas</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · COORDINACIÓN / COORDINADOR</p>
+          <div class="header__row">
+            <div class="header__text">
+              <h1 class="header__title">Brigadas y misiones</h1>
+              <p class="header__subtitle">Luis Méndez · Coordinador de turno</p>
+            </div>
+            <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="notice">
+            <img src="assets/icons/shield-check.svg" width="17" height="17" alt="">
+            <p>Vista de coordinación · Puedes asignar misiones y supervisar el avance de las 6 brigadas.</p>
+          </div>
+
+          <div style="display:flex;gap:10px">
+            <span class="tag tag--info">4 en campo</span>
+            <span class="tag tag--success">2 disponibles</span>
+            <span class="tag tag--neutral">24 integrantes</span>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Nueva asignación</h3>
+          </div>
+
+          <form class="card" data-assign-form>
+            <div class="incident-card__row">
+              <span class="text-11 text-muted">INC-026-049 · El Colli</span>
+              <span class="tag tag--warning">Media</span>
+            </div>
+            <p class="bold" style="font-size:18px;line-height:1.45">Verificar avistamiento de humo</p>
+            <label class="field">
+              <span class="field__body">
+                <span class="field__label">Brigada disponible</span>
+                <select class="field__control" name="brigada" data-assign-brigade>
+                  <option value="Charlie">Charlie · 4 integrantes · A 2,4 km</option>
+                  <option value="Foxtrot">Foxtrot · 4 integrantes · En base</option>
+                </select>
+              </span>
+              <img src="assets/icons/chevron-down.svg" width="18" height="18" alt="">
+            </label>
+            <label class="field">
+              <span class="field__body">
+                <span class="field__label">Instrucción de misión</span>
+                <input class="field__control" name="instruccion" value="Verificar desde un punto seguro e informar.">
+              </span>
+            </label>
+            <button type="submit" class="btn btn--primary">
+              <img src="assets/icons/send.svg" width="19" height="19" alt="">
+              <span data-assign-label>Asignar misión a Charlie</span>
+            </button>
+          </form>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Seguimiento en campo</h3>
+            <a href="#zonas" class="link">Ver mapa</a>
+          </div>
+
+          <div class="card brigade">
+            <div class="incident-card__row"><span class="brigade__name">Brigada Bravo</span><span class="tag tag--neutral">4 integrantes</span></div>
+            <p class="text-12">INC-026-041 · Rescate</p>
+            <div class="brigade__status"><span>En ruta · Llegada en 12 min</span><span>GPS 09:39</span></div>
+            <div class="progress"><span style="width:40%"></span></div>
+          </div>
+          <div class="card brigade">
+            <div class="incident-card__row"><span class="brigade__name">Brigada Alfa</span><span class="tag tag--neutral">4 integrantes</span></div>
+            <p class="text-12">INC-026-038 · Búsqueda</p>
+            <div class="brigade__status"><span>En sitio · Búsqueda en curso</span><span>GPS 09:36</span></div>
+            <div class="progress"><span style="width:72%"></span></div>
+          </div>
+          <div class="card brigade">
+            <div class="incident-card__row"><span class="brigade__name">Brigada Delta</span><span class="tag tag--neutral">4 integrantes</span></div>
+            <p class="text-12">INC-026-029 · Vigilancia</p>
+            <div class="brigade__status"><span>En sitio · Área asegurada</span><span>GPS 09:34</span></div>
+            <div class="progress"><span style="width:90%"></span></div>
+          </div>
+          <div class="card brigade">
+            <div class="incident-card__row"><span class="brigade__name">Brigada Eco</span><span class="tag tag--neutral">4 integrantes</span></div>
+            <p class="text-12">INC-026-032 · Apoyo</p>
+            <div class="brigade__status"><span>En ruta · Llegada en 8 min</span><span>GPS 09:40</span></div>
+            <div class="progress"><span style="width:55%"></span></div>
+          </div>
+
+          <p class="text-11 text-muted">Foxtrot permanece disponible en base. Datos demostrativos.</p>
+        </div>
+
+        <nav class="tabbar" data-tabbar="coordinador" data-active="brigadas"></nav>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ##########################################################
+     04 INFORMES Y CONECTIVIDAD
+     ########################################################## -->
+<section class="group" id="g04">
+  <h2 class="group__title">04 Informes y conectividad</h2>
+  <div class="group__row">
+    <!-- 04 Informes · Reportes y exportaciones -->
+    <section class="canvas__screen" id="reportes">
+      <p class="canvas__label">04 Informes · Reportes y exportaciones</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · INFORMES Y CONECTIVIDAD</p>
+          <div class="header__row">
+            <div class="header__text">
+              <h1 class="header__title">Reportes</h1>
+              <p class="header__subtitle">Coordinador · Análisis y documentación</p>
+            </div>
+            <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="chips" data-chips>
+            <button class="chip is-active">Crear reporte</button>
+            <button class="chip">Exportaciones · 3</button>
+          </div>
+
+          <form class="card" data-report-generator>
+            <label class="field">
+              <span class="field__body">
+                <span class="field__label">Tipo de reporte</span>
+                <select class="field__control" name="tipo">
+                  <option>Resumen de incidentes</option>
+                  <option>Desempeño de brigadas</option>
+                  <option>Zonas críticas</option>
+                </select>
+              </span>
+              <img src="assets/icons/chevron-down.svg" width="18" height="18" alt="">
+            </label>
+            <label class="field">
+              <span class="field__body">
+                <span class="field__label">Periodo</span>
+                <input class="field__control" name="periodo" value="1–19 de octubre de 2026">
+              </span>
+              <img src="assets/icons/calendar-days.svg" width="18" height="18" alt="">
+            </label>
+            <label class="field">
+              <span class="field__body">
+                <span class="field__label">Cobertura</span>
+                <select class="field__control" name="cobertura">
+                  <option>Todas las zonas · Todos los estados</option>
+                  <option>Las Planillas · Todos los estados</option>
+                  <option>El Colli · Todos los estados</option>
+                  <option>Río Caliente · Todos los estados</option>
+                </select>
+              </span>
+              <img src="assets/icons/chevron-down.svg" width="18" height="18" alt="">
+            </label>
+            <p class="text-12 text-muted">48 registros · 36 cerrados y 12 activos</p>
+            <button type="submit" class="btn btn--primary">
+              <img src="assets/icons/file-down.svg" width="19" height="19" alt="">
+              Generar reporte PDF
+            </button>
+          </form>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Otros formatos</h3>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn--secondary"><img src="assets/icons/table-btn.svg" width="19" height="19" alt="">CSV · Datos</button>
+            <button class="btn btn--secondary"><img src="assets/icons/map-pinned-btn.svg" width="19" height="19" alt="">GeoJSON</button>
+          </div>
+
+          <div class="notice notice--info">
+            <img src="assets/icons/shield-check-info.svg" width="17" height="17" alt="">
+            <p>Las exportaciones omiten datos personales de las personas afectadas.</p>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Archivos recientes</h3>
+            <a href="#reportes" class="link">Ver todos</a>
+          </div>
+
+          <div class="card file">
+            <div class="file__row">
+              <img src="assets/icons/file-text.svg" width="26" height="26" alt="">
+              <div class="file__info">
+                <p class="file__name">Resumen de incidentes</p>
+                <p class="file__meta">PDF · 1–19 oct 2026 · 1,2 MB</p>
+              </div>
+              <button aria-label="Descargar"><img src="assets/icons/download.svg" width="20" height="20" alt=""></button>
+            </div>
+            <div class="incident-card__row"><span class="text-11 text-muted">Hoy, 09:30</span><span class="tag tag--success">Listo</span></div>
+          </div>
+          <div class="card file">
+            <div class="file__row">
+              <img src="assets/icons/table-26.svg" width="26" height="26" alt="">
+              <div class="file__info">
+                <p class="file__name">Registro del periodo</p>
+                <p class="file__meta">CSV · 1–19 oct 2026 · 84 KB</p>
+              </div>
+              <button aria-label="Descargar"><img src="assets/icons/download.svg" width="20" height="20" alt=""></button>
+            </div>
+            <div class="incident-card__row"><span class="text-11 text-muted">Hoy, 09:25</span><span class="tag tag--success">Listo</span></div>
+          </div>
+          <div class="card file">
+            <div class="file__row">
+              <img src="assets/icons/map-pinned-26.svg" width="26" height="26" alt="">
+              <div class="file__info">
+                <p class="file__name">Zonas e incidentes</p>
+                <p class="file__meta">GeoJSON · 1–19 oct 2026 · 320 KB</p>
+              </div>
+              <button aria-label="Descargar"><img src="assets/icons/download.svg" width="20" height="20" alt=""></button>
+            </div>
+            <div class="incident-card__row"><span class="text-11 text-muted">Hoy, 09:20</span><span class="tag tag--success">Listo</span></div>
+          </div>
+
+          <p class="footnote">Datos demostrativos · Los archivos son ejemplos de interfaz.</p>
+        </div>
+
+        <nav class="tabbar" data-tabbar="coordinador" data-active="informes"></nav>
+      </div>
+    </section>
+
+    <!-- 04 Conectividad · Sincronización sin conexión -->
+    <section class="canvas__screen" id="sincronizacion">
+      <p class="canvas__label">04 Conectividad · Sincronización sin conexión</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · INFORMES Y CONECTIVIDAD</p>
+          <div class="header__row">
+            <a href="#perfil" aria-label="Regresar"><img src="assets/icons/arrow-left.svg" width="22" height="22" alt=""></a>
+            <div class="header__text">
+              <h1 class="header__title">Sincronización</h1>
+              <p class="header__subtitle">Disponibilidad de datos en este dispositivo</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="card card--soft">
+            <div class="info-row">
+              <img src="assets/icons/wifi-off-26.svg" width="26" height="26" alt="">
+              <div class="info-row__text" style="display:flex;flex-direction:column;gap:3px">
+                <p class="bold" style="font-size:18px" data-sync-title>Modo sin conexión</p>
+                <p class="text-12 text-primary" data-sync-subtitle>Los cambios se guardan en el dispositivo.</p>
+              </div>
+            </div>
+            <div class="separator"></div>
+            <p class="text-12">Última sincronización: hoy, 09:20 Última comprobación de red: 09:41</p>
+            <p class="text-11 text-muted">Los datos del equipo pueden estar desactualizados.</p>
+          </div>
+
+          <button class="btn btn--primary" data-sync>
+            <img src="assets/icons/refresh-cw-white.svg" width="19" height="19" alt="">
+            Comprobar conexión y sincronizar
+          </button>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Pendientes de envío</h3>
+            <span class="link" data-sync-count>3 cambios</span>
+          </div>
+
+          <div class="card pending" style="gap:13px" data-sync-list>
+            <div class="pending__item">
+              <img src="assets/icons/file-plus.svg" width="20" height="20" alt="">
+              <div class="file__info" style="gap:3px">
+                <p class="bold text-12">Nuevo incidente · INC-026-049</p>
+                <p class="text-11 text-muted">Avistamiento de humo · 09:38</p>
+              </div>
+              <img class="pending__state" src="assets/icons/clock.svg" width="16" height="16" alt="Pendiente">
+            </div>
+            <div class="separator"></div>
+            <div class="pending__item">
+              <img src="assets/icons/clipboard-check-20.svg" width="20" height="20" alt="">
+              <div class="file__info" style="gap:3px">
+                <p class="bold text-12">Avance · INC-026-041</p>
+                <p class="text-11 text-muted">Brigada en ruta · 09:29</p>
+              </div>
+              <img class="pending__state" src="assets/icons/clock.svg" width="16" height="16" alt="Pendiente">
+            </div>
+            <div class="separator"></div>
+            <div class="pending__item">
+              <img src="assets/icons/map-pin-20.svg" width="20" height="20" alt="">
+              <div class="file__info" style="gap:3px">
+                <p class="bold text-12">Ubicación de Brigada Bravo</p>
+                <p class="text-11 text-muted">20.6189, −103.5281 · 09:39</p>
+              </div>
+              <img class="pending__state" src="assets/icons/clock.svg" width="16" height="16" alt="Pendiente">
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Mapas descargados</h3>
+            <a href="#sincronizacion" class="link">Gestionar</a>
+          </div>
+
+          <div class="card" style="gap:9px">
+            <div class="file__row">
+              <span class="map-thumb"><img src="assets/icons/map-25.svg" width="25" height="25" alt=""></span>
+              <div class="file__info">
+                <p class="bold" style="font-size:13px">Las Planillas y El Colli</p>
+                <p class="text-muted" style="font-size:10px">42 MB · Actualizado hoy, 08:00</p>
+              </div>
+              <img src="assets/icons/circle-check.svg" width="20" height="20" alt="">
+            </div>
+            <span class="tag tag--success" style="align-self:flex-start">Disponible sin conexión</span>
+          </div>
+          <div class="card" style="gap:9px">
+            <div class="file__row">
+              <span class="map-thumb"><img src="assets/icons/map-25.svg" width="25" height="25" alt=""></span>
+              <div class="file__info">
+                <p class="bold" style="font-size:13px">Río Caliente y La Cebada</p>
+                <p class="text-muted" style="font-size:10px">38 MB · Actualizado 18 oct, 17:30</p>
+              </div>
+              <img src="assets/icons/circle-check.svg" width="20" height="20" alt="">
+            </div>
+            <span class="tag tag--success" style="align-self:flex-start">Disponible sin conexión</span>
+          </div>
+
+          <p class="text-11 text-muted">Almacenamiento local: 80 MB de 500 MB</p>
+          <div class="progress progress--storage"><span style="width:16%"></span></div>
+
+          <div class="notice notice--warning">
+            <img src="assets/icons/shield-check-warning.svg" width="17" height="17" alt="">
+            <p>Tus 3 cambios están protegidos. Se enviarán al recuperar la conexión; no cierres sesión antes de sincronizar.</p>
+          </div>
+        </div>
+
+        <nav class="tabbar" data-tabbar="rescatista" data-active="perfil"></nav>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ##########################################################
+     05 CUENTA
+     ########################################################## -->
+<section class="group" id="g05">
+  <h2 class="group__title">05 Cuenta</h2>
+  <div class="group__row">
+    <!-- 05 Cuenta · Perfil de usuario -->
+    <section class="canvas__screen" id="perfil">
+      <p class="canvas__label">05 Cuenta · Perfil de usuario</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · CUENTA / RESCATISTA</p>
+          <div class="header__row">
+            <div class="header__text">
+              <h1 class="header__title">Mi perfil</h1>
+              <p class="header__subtitle">Cuenta y preferencias del dispositivo</p>
+            </div>
+            <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="card">
+            <div class="info-row" style="gap:14px">
+              <span class="avatar">AT</span>
+              <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:5px">
+                <p style="font-size:20px;font-weight:800;line-height:1.2">Ana Torres</p>
+                <p class="text-12 text-muted">ana.torres@brigadas.demo</p>
+                <div style="display:flex;gap:6px">
+                  <span class="tag tag--success">Rescatista</span>
+                  <span class="tag tag--info">Bravo</span>
+                </div>
+              </div>
+            </div>
+            <div class="separator"></div>
+            <p class="text-12 text-muted">ID de personal: RES-014 · Turno 08:00–16:00</p>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Preferencias operativas</h3>
+          </div>
+
+          <div class="card" style="gap:18px">
+            <label class="pref">
+              <span class="pref__text">
+                <span class="pref__title">Notificaciones de misión</span>
+                <span class="pref__desc">Asignaciones y cambios de estado</span>
+              </span>
+              <input type="checkbox" class="switch" checked>
+            </label>
+            <div class="separator"></div>
+            <label class="pref">
+              <span class="pref__text">
+                <span class="pref__title">Compartir ubicación en misión</span>
+                <span class="pref__desc">Solo durante tu turno activo</span>
+              </span>
+              <input type="checkbox" class="switch" checked>
+            </label>
+            <div class="separator"></div>
+            <label class="pref">
+              <span class="pref__text">
+                <span class="pref__title">Descargar con datos móviles</span>
+                <span class="pref__desc">Mapas solo por Wi-Fi al desactivar</span>
+              </span>
+              <input type="checkbox" class="switch">
+            </label>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Cuenta y aplicación</h3>
+          </div>
+
+          <div class="card list">
+            <a href="#sincronizacion" class="info-row">
+              <img src="assets/icons/refresh-cw.svg" width="24" height="24" alt="">
+              <div class="info-row__text">
+                <p class="info-row__title">Sincronización y mapas</p>
+                <p class="info-row__subtitle">3 cambios pendientes · Última: 09:20</p>
+              </div>
+              <img src="assets/icons/chevron-right.svg" width="17" height="17" alt="">
+            </a>
+            <div class="separator"></div>
+            <a href="#perfil" class="info-row">
+              <img src="assets/icons/accessibility.svg" width="24" height="24" alt="">
+              <div class="info-row__text">
+                <p class="info-row__title">Accesibilidad</p>
+                <p class="info-row__subtitle">Texto estándar · Contraste alto</p>
+              </div>
+              <img src="assets/icons/chevron-right.svg" width="17" height="17" alt="">
+            </a>
+            <div class="separator"></div>
+            <div class="info-row">
+              <img src="assets/icons/languages.svg" width="24" height="24" alt="">
+              <p class="info-row__text info-row__title">Idioma</p>
+              <span class="info-row__action">Español</span>
+            </div>
+            <div class="separator"></div>
+            <a href="#perfil" class="info-row">
+              <img src="assets/icons/lock-keyhole.svg" width="24" height="24" alt="">
+              <div class="info-row__text">
+                <p class="info-row__title">Seguridad de la cuenta</p>
+                <p class="info-row__subtitle">Contraseña y sesiones</p>
+              </div>
+              <img src="assets/icons/chevron-right.svg" width="17" height="17" alt="">
+            </a>
+          </div>
+
+          <a href="#login" class="btn btn--secondary">
+            <img src="assets/icons/log-out.svg" width="19" height="19" alt="">
+            Cerrar sesión
+          </a>
+
+          <p class="footnote" style="text-align:center">Respuesta y Monitoreo · Versión 1.0 Entorno académico de demostración</p>
+        </div>
+
+        <nav class="tabbar" data-tabbar="rescatista" data-active="perfil"></nav>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ##########################################################
+     06 ADMINISTRACIÓN · ADMINISTRADOR
+     ########################################################## -->
+<section class="group" id="g06">
+  <h2 class="group__title">06 Administración · Administrador</h2>
+  <div class="group__row">
+    <!-- 06 Administración · Gestión de incidentes -->
+    <section class="canvas__screen" id="admin-incidentes">
+      <p class="canvas__label">06 Administración · Gestión de incidentes</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · ADMINISTRACIÓN / ADMINISTRADOR</p>
+          <div class="header__row">
+            <div class="header__text">
+              <h1 class="header__title">Administrar incidentes</h1>
+              <p class="header__subtitle">Elena Ruiz · Control y trazabilidad</p>
+            </div>
+            <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="notice">
+            <img src="assets/icons/shield-check.svg" width="17" height="17" alt="">
+            <p>Los cambios quedan en la bitácora. Los registros no se eliminan: se archivan con motivo.</p>
+          </div>
+
+          <label class="field">
+            <span class="field__body">
+              <span class="field__label">Buscar registros</span>
+              <input class="field__control" type="search" placeholder="Folio, descripción o zona">
+            </span>
+            <img src="assets/icons/search-field.svg" width="18" height="18" alt="">
+          </label>
+
+          <div class="chips" data-chips>
+            <button class="chip is-active">Activos · 12</button>
+            <button class="chip">Cerrados · 36</button>
+            <button class="chip">Archivados · 0</button>
+          </div>
+
+          <div class="section-header">
+            <label class="checkbox">
+              <input type="checkbox" data-select-all>
+              <img class="cb-off" src="assets/icons/square.svg" width="17" height="17" alt=""><img class="cb-on" src="assets/icons/square-check.svg" width="17" height="17" alt="">
+              Seleccionar
+            </label>
+            <button class="link">Filtros avanzados</button>
+          </div>
+
+          <div class="card record">
+            <div class="record__head">
+              <label class="checkbox"><input type="checkbox" data-select-item><img class="cb-off" src="assets/icons/square.svg" width="17" height="17" alt=""><img class="cb-on" src="assets/icons/square-check.svg" width="17" height="17" alt=""></label>
+              <span class="record__id">INC-026-041</span>
+              <span class="tag tag--danger">Alta</span>
+            </div>
+            <p class="record__title">Excursionista lesionada</p>
+            <p class="text-12 text-muted">Los Toboganes · Las Planillas</p>
+            <div class="incident-card__row">
+              <span class="tag tag--info">En atención</span>
+              <span class="record__actions"><a href="#detalle" class="link">Editar</a><button aria-label="Más opciones"><img src="assets/icons/ellipsis.svg" width="20" height="20" alt=""></button></span>
+            </div>
+          </div>
+          <div class="card record">
+            <div class="record__head">
+              <label class="checkbox"><input type="checkbox" data-select-item><img class="cb-off" src="assets/icons/square.svg" width="17" height="17" alt=""><img class="cb-on" src="assets/icons/square-check.svg" width="17" height="17" alt=""></label>
+              <span class="record__id">INC-026-049</span>
+              <span class="tag tag--warning">Media</span>
+            </div>
+            <p class="record__title">Avistamiento de humo</p>
+            <p class="text-12 text-muted">El Colli · Acceso oriente</p>
+            <div class="incident-card__row">
+              <span class="tag tag--warning">Pendiente</span>
+              <span class="record__actions"><a href="#detalle" class="link">Editar</a><button aria-label="Más opciones"><img src="assets/icons/ellipsis.svg" width="20" height="20" alt=""></button></span>
+            </div>
+          </div>
+          <div class="card record">
+            <div class="record__head">
+              <label class="checkbox"><input type="checkbox" data-select-item><img class="cb-off" src="assets/icons/square.svg" width="17" height="17" alt=""><img class="cb-on" src="assets/icons/square-check.svg" width="17" height="17" alt=""></label>
+              <span class="record__id">INC-026-038</span>
+              <span class="tag tag--warning">Media</span>
+            </div>
+            <p class="record__title">Senderista desorientado</p>
+            <p class="text-12 text-muted">Río Caliente · Sector norte</p>
+            <div class="incident-card__row">
+              <span class="tag tag--info">En atención</span>
+              <span class="record__actions"><a href="#detalle" class="link">Editar</a><button aria-label="Más opciones"><img src="assets/icons/ellipsis.svg" width="20" height="20" alt=""></button></span>
+            </div>
+          </div>
+
+          <p class="text-11 text-muted" style="text-align:center">Mostrando 3 de 12 activos · Cargar más</p>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Último cambio auditado</h3>
+          </div>
+
+          <div class="card">
+            <div style="display:flex;gap:10px;align-items:flex-start">
+              <img src="assets/icons/history-21.svg" width="21" height="21" alt="">
+              <div class="file__info">
+                <p class="bold" style="font-size:13px">INC-026-041 · Estado actualizado</p>
+                <p class="text-12 text-muted">Asignado → En atención · Hoy, 09:29</p>
+                <p class="text-11 text-muted">Ana Torres · Brigada Bravo</p>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn--secondary">
+            <img src="assets/icons/history-btn.svg" width="19" height="19" alt="">
+            Consultar bitácora completa
+          </button>
+        </div>
+
+        <nav class="tabbar" data-tabbar="admin" data-active="incidentes"></nav>
+      </div>
+    </section>
+
+    <!-- 06 Administración · Gestión de usuarios -->
+    <section class="canvas__screen" id="admin-usuarios">
+      <p class="canvas__label">06 Administración · Gestión de usuarios</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · ADMINISTRACIÓN / ADMINISTRADOR</p>
+          <div class="header__row">
+            <div class="header__text">
+              <h1 class="header__title">Usuarios</h1>
+              <p class="header__subtitle">30 cuentas · 28 activas y 2 suspendidas</p>
+            </div>
+            <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <button class="btn btn--primary">
+            <img src="assets/icons/user-plus.svg" width="19" height="19" alt="">
+            Invitar usuario
+          </button>
+
+          <label class="field">
+            <span class="field__body">
+              <span class="field__label">Buscar cuenta</span>
+              <input class="field__control" type="search" placeholder="Nombre o correo" data-user-search>
+            </span>
+            <img src="assets/icons/search-field.svg" width="18" height="18" alt="">
+          </label>
+
+          <div class="chips" data-chips>
+            <button class="chip is-active">Todos · 30</button>
+            <button class="chip">Activos · 28</button>
+            <button class="chip">Suspendidos · 2</button>
+          </div>
+
+          <p class="text-11 text-muted">24 rescatistas · 4 coordinadores · 2 administradores</p>
+
+          <div class="card account" data-user>
+            <div class="file__row">
+              <span class="avatar avatar--sm">AT</span>
+              <div class="file__info" style="gap:3px">
+                <p class="bold" style="font-size:16px">Ana Torres</p>
+                <p class="text-11 text-muted">ana.torres@brigadas.demo</p>
+              </div>
+              <button aria-label="Opciones"><img src="assets/icons/ellipsis-vertical.svg" width="18" height="18" alt=""></button>
+            </div>
+            <p class="text-12 text-muted">Brigada Bravo · Turno 08:00–16:00</p>
+            <div class="incident-card__row"><span class="tag tag--neutral">Rescatista</span><span class="tag tag--success">Activa</span></div>
+          </div>
+          <div class="card account" data-user>
+            <div class="file__row">
+              <span class="avatar avatar--sm">LM</span>
+              <div class="file__info" style="gap:3px">
+                <p class="bold" style="font-size:16px">Luis Méndez</p>
+                <p class="text-11 text-muted">luis.mendez@brigadas.demo</p>
+              </div>
+              <button aria-label="Opciones"><img src="assets/icons/ellipsis-vertical.svg" width="18" height="18" alt=""></button>
+            </div>
+            <p class="text-12 text-muted">Coordinación de campo · En turno</p>
+            <div class="incident-card__row"><span class="tag tag--neutral">Coordinador</span><span class="tag tag--success">Activa</span></div>
+          </div>
+          <div class="card account" data-user>
+            <div class="file__row">
+              <span class="avatar avatar--sm">ER</span>
+              <div class="file__info" style="gap:3px">
+                <p class="bold" style="font-size:16px">Elena Ruiz</p>
+                <p class="text-11 text-muted">elena.ruiz@brigadas.demo</p>
+              </div>
+              <button aria-label="Opciones"><img src="assets/icons/ellipsis-vertical.svg" width="18" height="18" alt=""></button>
+            </div>
+            <p class="text-12 text-muted">Gestión del sistema · Tu cuenta</p>
+            <div class="incident-card__row"><span class="tag tag--info">Administrador</span><span class="tag tag--success">Activa</span></div>
+          </div>
+          <div class="card account" data-user>
+            <div class="file__row">
+              <span class="avatar avatar--sm">DS</span>
+              <div class="file__info" style="gap:3px">
+                <p class="bold" style="font-size:16px">Diego Salas</p>
+                <p class="text-11 text-muted">diego.salas@brigadas.demo</p>
+              </div>
+              <button aria-label="Opciones"><img src="assets/icons/ellipsis-vertical.svg" width="18" height="18" alt=""></button>
+            </div>
+            <p class="text-12 text-muted">Sin brigada · Suspensión temporal</p>
+            <div class="incident-card__row"><span class="tag tag--neutral">Rescatista</span><span class="tag tag--danger">Suspendida</span></div>
+          </div>
+
+          <p class="text-11 text-muted" style="text-align:center">Mostrando 4 de 30 cuentas · Cargar más</p>
+
+          <div class="notice notice--info">
+            <img src="assets/icons/lock-keyhole-info.svg" width="17" height="17" alt="">
+            <p>Al suspender una cuenta se revocan sus sesiones, pero se conserva el historial de actividad.</p>
+          </div>
+        </div>
+
+        <nav class="tabbar" data-tabbar="admin" data-active="usuarios"></nav>
+      </div>
+    </section>
+
+    <!-- 06 Administración · Roles y permisos -->
+    <section class="canvas__screen" id="admin-roles">
+      <p class="canvas__label">06 Administración · Roles y permisos</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · ADMINISTRACIÓN / ADMINISTRADOR</p>
+          <div class="header__row">
+            <a href="#inicio-admin" aria-label="Regresar"><img src="assets/icons/arrow-left.svg" width="22" height="22" alt=""></a>
+            <div class="header__text">
+              <h1 class="header__title">Roles y permisos</h1>
+              <p class="header__subtitle">Acceso por responsabilidad · 3 perfiles</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="notice">
+            <img src="assets/icons/shield-check.svg" width="17" height="17" alt="">
+            <p>Se aplica el principio de mínimo privilegio. Solo administración puede cambiar el rol de una cuenta.</p>
+          </div>
+
+          <div class="card" style="gap:10px">
+            <div class="role__head">
+              <img src="assets/icons/cross-role.svg" width="22" height="22" alt="">
+              <span class="role__name">Rescatista</span>
+              <span class="tag tag--neutral">24 cuentas</span>
+            </div>
+            <p class="text-12 text-muted">Reporta, consulta el mapa y actualiza su misión. No asigna brigadas ni gestiona cuentas.</p>
+          </div>
+          <div class="card" style="gap:10px">
+            <div class="role__head">
+              <img src="assets/icons/radio-tower.svg" width="22" height="22" alt="">
+              <span class="role__name">Coordinador</span>
+              <span class="tag tag--neutral">4 cuentas</span>
+            </div>
+            <p class="text-12 text-muted">Supervisa la operación, asigna brigadas, compara periodos y genera informes.</p>
+          </div>
+          <div class="card" style="gap:10px">
+            <div class="role__head">
+              <img src="assets/icons/shield-check-role.svg" width="22" height="22" alt="">
+              <span class="role__name">Administrador</span>
+              <span class="tag tag--neutral">2 cuentas</span>
+            </div>
+            <p class="text-12 text-muted">Gestiona usuarios, permisos y registros. Tiene acceso completo con auditoría.</p>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Matriz de permisos</h3>
+          </div>
+
+          <!-- Permisos: 1 = permitido, 0 = no permitido (RES, COO, ADM) -->
+          <div class="card matrix" style="gap:12px">
+            <div class="matrix__row matrix__row--head"><span>Función</span><span>RES</span><span>COO</span><span>ADM</span></div>
+            <div class="separator"></div>
+            <div class="matrix__row" data-perms="111"><span>Consultar mapa e incidentes</span></div>
+            <div class="matrix__row" data-perms="111"><span>Registrar incidentes</span></div>
+            <div class="matrix__row" data-perms="111"><span>Actualizar misión propia</span></div>
+            <div class="matrix__row" data-perms="011"><span>Asignar brigadas</span></div>
+            <div class="matrix__row" data-perms="011"><span>Consultar analítica y exportar</span></div>
+            <div class="matrix__row" data-perms="001"><span>Administrar todos los registros</span></div>
+            <div class="matrix__row" data-perms="001"><span>Gestionar usuarios y permisos</span></div>
+            <div class="separator"></div>
+            <p class="footnote">RES: Rescatista · COO: Coordinador · ADM: Administrador ✓ Permitido  /  − No permitido</p>
+          </div>
+
+          <button class="btn btn--primary">
+            <img src="assets/icons/user-cog.svg" width="19" height="19" alt="">
+            Gestionar asignación de roles
+          </button>
+
+          <p class="text-11 text-muted">Configuración base de demostración · Cambios auditados.</p>
+        </div>
+
+        <nav class="tabbar" data-tabbar="admin" data-active="ajustes"></nav>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ##########################################################
+     07 ESTADOS DEL SISTEMA
+     ########################################################## -->
+<section class="group" id="g07">
+  <h2 class="group__title">07 Estados del sistema</h2>
+  <div class="group__row">
+    <!-- 07 Estados · Error recuperable -->
+    <section class="canvas__screen" id="error">
+      <p class="canvas__label">07 Estados · Error recuperable</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · ESTADOS DEL SISTEMA</p>
+          <div class="header__row">
+            <a href="#sincronizacion" aria-label="Regresar"><img src="assets/icons/arrow-left.svg" width="22" height="22" alt=""></a>
+            <div class="header__text">
+              <h1 class="header__title">Conexión interrumpida</h1>
+              <p class="header__subtitle">Sincronización del dispositivo</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="state" style="padding-top:18px">
+            <img src="assets/img/ilustracion-conexion.svg" width="130" height="130" alt="">
+            <span class="tag tag--warning">Error recuperable · CON-02</span>
+            <h2 class="state__title">No pudimos sincronizar</h2>
+            <p class="state__text">La señal se perdió al enviar los cambios. Tus datos siguen guardados y puedes continuar trabajando sin conexión.</p>
+          </div>
+
+          <div class="card">
+            <div class="info-row">
+              <img src="assets/icons/shield-check-24.svg" width="24" height="24" alt="">
+              <div class="info-row__text">
+                <p class="info-row__title">3 cambios protegidos</p>
+                <p class="info-row__subtitle">Incluye el incidente INC-026-049</p>
+              </div>
+              <span class="info-row__action">Guardados</span>
+            </div>
+            <p class="text-12 text-muted">Última sincronización correcta: hoy, 09:20. Intento más reciente: 09:41.</p>
+          </div>
+
+          <a href="#sincronizacion" class="btn btn--primary">
+            <img src="assets/icons/refresh-cw-white.svg" width="19" height="19" alt="">
+            Reintentar sincronización
+          </a>
+          <a href="#inicio-rescatista" class="btn btn--secondary">
+            <img src="assets/icons/map-btn.svg" width="19" height="19" alt="">
+            Continuar sin conexión
+          </a>
+
+          <div class="notice notice--info">
+            <img src="assets/icons/info-blue.svg" width="17" height="17" alt="">
+            <p>Busca un lugar seguro con mejor señal. No es necesario volver a registrar el incidente.</p>
+          </div>
+
+          <a href="#error" class="link" style="text-align:center">Consultar ayuda de conectividad</a>
+        </div>
+
+        <nav class="tabbar" data-tabbar="rescatista" data-active="perfil"></nav>
+      </div>
+    </section>
+
+    <!-- 07 Estados · Registro correcto -->
+    <section class="canvas__screen" id="registro-correcto">
+      <p class="canvas__label">07 Estados · Registro correcto</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · ESTADOS DEL SISTEMA</p>
+          <div class="header__row">
+            <div class="header__text">
+              <h1 class="header__title">Confirmación</h1>
+              <p class="header__subtitle">Registro de incidente</p>
+            </div>
+            <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="state" style="gap:16px">
+            <img src="assets/img/sello-confirmacion.svg" width="124" height="124" alt="">
+            <h2 class="state__title" style="font-size:28px">Incidente registrado</h2>
+            <p class="state__text">El reporte se guardó correctamente en tu dispositivo. No necesitas volver a enviarlo.</p>
+          </div>
+
+          <div class="card">
+            <div class="incident-card__row">
+              <span class="text-12 bold text-primary">INC-026-049</span>
+              <span class="tag tag--warning">Media</span>
+            </div>
+            <p style="font-size:20px;font-weight:800;line-height:1.2">Avistamiento de humo</p>
+            <p class="text-muted" style="font-size:13px;line-height:1.45">El Colli · Acceso oriente 20.6491, −103.5094</p>
+            <div class="separator"></div>
+            <div class="incident-card__row">
+              <span class="tag tag--warning">Pendiente de validación</span>
+              <span class="text-11 text-muted">Hoy, 09:38</span>
+            </div>
+            <p class="text-11 text-muted">Registrado por Ana Torres · Brigada Bravo</p>
+          </div>
+
+          <div class="notice notice--info">
+            <img src="assets/icons/cloud-upload.svg" width="17" height="17" alt="">
+            <p>Sin conexión: se notificará a coordinación al sincronizar. Este reporte forma parte de tus 3 cambios pendientes.</p>
+          </div>
+
+          <a href="#incidentes" class="btn btn--primary">
+            <img src="assets/icons/clipboard-list-white.svg" width="19" height="19" alt="">
+            Ver incidente registrado
+          </a>
+          <a href="#mapa" class="btn btn--secondary">
+            <img src="assets/icons/map-btn.svg" width="19" height="19" alt="">
+            Volver al mapa
+          </a>
+
+          <p class="text-11 text-muted" style="text-align:center">Demostración académica · No envía alertas reales.</p>
+        </div>
+
+        <nav class="tabbar" data-tabbar="rescatista" data-active="incidentes"></nav>
+      </div>
+    </section>
+
+    <!-- 07 Estados · Acceso denegado -->
+    <section class="canvas__screen" id="acceso-denegado">
+      <p class="canvas__label">07 Estados · Acceso denegado</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · ESTADOS DEL SISTEMA</p>
+          <div class="header__row">
+            <a href="#perfil" aria-label="Regresar"><img src="assets/icons/arrow-left.svg" width="22" height="22" alt=""></a>
+            <div class="header__text">
+              <h1 class="header__title">Acceso restringido</h1>
+              <p class="header__subtitle">Protección de la cuenta y del sistema</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="state">
+            <img src="assets/img/escudo-acceso.svg" width="126" height="126" alt="">
+            <span class="tag tag--info">Permiso no disponible</span>
+            <h2 class="state__title">Esta función requiere otro rol</h2>
+            <p class="state__text">La gestión de roles y permisos está reservada al administrador. Tu sesión sigue activa y tus reportes están seguros.</p>
+          </div>
+
+          <div class="card">
+            <div class="incident-card__row">
+              <span class="bold" style="font-size:14px;line-height:1.45">Ana Torres</span>
+              <span class="tag tag--success">Rescatista</span>
+            </div>
+            <div class="separator"></div>
+            <p class="text-12 text-muted">Puedes consultar el mapa, registrar incidentes y actualizar tu misión asignada.</p>
+          </div>
+
+          <a href="#inicio-rescatista" class="btn btn--primary">
+            <img src="assets/icons/house-white.svg" width="19" height="19" alt="">
+            Volver a mi inicio operativo
+          </a>
+          <a href="#brigadas" class="btn btn--secondary">
+            <img src="assets/icons/message-circle.svg" width="19" height="19" alt="">
+            Contactar a coordinación
+          </a>
+
+          <div class="notice notice--info">
+            <img src="assets/icons/lock-keyhole-info.svg" width="17" height="17" alt="">
+            <p>Si necesitas otro permiso, solicita una revisión de tu rol. No compartas contraseñas ni uses otra cuenta.</p>
+          </div>
+
+          <p class="text-11 text-muted" style="text-align:center">Restricción de acceso · Código SEG-403</p>
+        </div>
+
+        <nav class="tabbar" data-tabbar="rescatista" data-active="perfil"></nav>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ##########################################################
+     08 VISTAS POR PERFIL
+     ########################################################## -->
+<section class="group" id="g08">
+  <h2 class="group__title">08 Vistas por perfil</h2>
+  <div class="group__row">
+    <!-- 08 Perfiles · Inicio del rescatista -->
+    <section class="canvas__screen" id="inicio-rescatista">
+      <p class="canvas__label">08 Perfiles · Inicio del rescatista</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · INICIO / RESCATISTA</p>
+          <div class="header__row">
+            <div class="header__text">
+              <h1 class="header__title">Buen día, Ana</h1>
+              <p class="header__subtitle">Brigada Bravo · Turno 08:00–16:00</p>
+            </div>
+            <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="section-header" style="align-items:flex-start">
+            <span class="tag tag--success">En servicio</span>
+            <span class="text-12 text-muted">Lun 19 oct · 09:41</span>
+          </div>
+
+          <div class="card card--soft">
+            <div class="incident-card__row">
+              <span class="text-11 text-primary" style="font-weight:800">TU MISIÓN ACTIVA</span>
+              <span class="tag tag--danger">Alta</span>
+            </div>
+            <h2 class="display display--22">Rescate en Los Toboganes</h2>
+            <p class="text-12 text-primary">INC-026-041 · Excursionista lesionada</p>
+            <div class="separator"></div>
+            <div class="incident-card__row">
+              <div style="display:flex;flex-direction:column;gap:3px;line-height:1.45">
+                <p class="bold" style="font-size:15px">En ruta</p>
+                <p class="text-12 text-muted">4 integrantes · 1,8 km</p>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <p class="display display--22 text-primary">12 min</p>
+                <p class="text-muted" style="font-size:10px;line-height:1.45">Llegada estimada</p>
+              </div>
+            </div>
+            <a href="#detalle" class="btn btn--primary">
+              <img src="assets/icons/arrow-right.svg" width="19" height="19" alt="">
+              Ver misión y actualizar estado
+            </a>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Accesos operativos</h3>
+          </div>
+
+          <div class="btn-row">
+            <a href="#registro" class="btn btn--primary">
+              <img src="assets/icons/plus-white.svg" width="19" height="19" alt="">
+              Reportar
+            </a>
+            <a href="#mapa" class="btn btn--secondary">
+              <img src="assets/icons/map-btn.svg" width="19" height="19" alt="">
+              Abrir mapa
+            </a>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Tu ubicación</h3>
+            <a href="#mapa" class="link">Centrar mapa</a>
+          </div>
+
+          <div class="map" style="height:355px">
+            <div class="map__layer" data-terrain>
+              <span class="map__name" style="left:29px;top:32px">RÍO CALIENTE</span>
+              <span class="map__name map__name--small" style="left:176px;top:92px">Cerro de San Miguel</span>
+              <span class="map__name" style="left:44px;top:283px">LAS PLANILLAS</span>
+              <span class="map__name map__name--small" style="left:53px;top:240px">Los Toboganes</span>
+              <span class="map__name" style="left:268px;top:299px">EL COLLI</span>
+
+              <a href="#detalle" class="marker" style="left:152px;top:197px">
+                <span class="marker__dot marker__dot--danger"><img src="assets/icons/cross-marker.svg" width="21" height="21" alt=""></span>
+                <span class="marker__ref">041</span>
+              </a>
+
+              <img src="assets/map/halo-de-ubicacion.svg" width="36" height="36" style="left:220px;top:285px" alt="">
+              <img src="assets/map/mi-ubicacion.svg" width="14" height="14" style="left:231px;top:296px" alt="Mi ubicación">
+            </div>
+            <div class="map__compass">
+              <span>N</span>
+              <img src="assets/icons/navigation-2.svg" width="20" height="20" alt="">
+            </div>
+            <div class="map__scale">
+              <span>0               500 m</span>
+              <span class="map__scale-bar"></span>
+            </div>
+            <span class="map__source" style="left:266px;top:330px">Cartografía ilustrativa</span>
+          </div>
+
+          <div class="info-row" style="gap:10px">
+            <img src="assets/icons/locate-fixed-map.svg" width="20" height="20" alt="">
+            <div class="info-row__text" style="display:flex;flex-direction:column;gap:3px">
+              <p class="bold" style="font-size:13px">Acceso Las Planillas</p>
+              <p class="text-11 text-muted">20.6189, −103.5281 · GPS 09:39 · ±8 m</p>
+            </div>
+          </div>
+
+          <div class="notice notice--warning">
+            <img src="assets/icons/wifi-off.svg" width="17" height="17" alt="">
+            <p>Sin conexión · 3 cambios guardados. Mapas descargados disponibles; posiciones de equipo al corte 09:20.</p>
+          </div>
+
+          <p class="footnote">Escenario demostrativo · Sin instrucciones operativas reales.</p>
+        </div>
+
+        <nav class="tabbar" data-tabbar="rescatista" data-active="inicio"></nav>
+      </div>
+    </section>
+
+    <!-- 08 Perfiles · Inicio del administrador -->
+    <section class="canvas__screen" id="inicio-admin">
+      <p class="canvas__label">08 Perfiles · Inicio del administrador</p>
+      <div class="phone">
+        <header class="header">
+          <p class="header__eyebrow">LA PRIMAVERA · INICIO / ADMINISTRADOR</p>
+          <div class="header__row">
+            <div class="header__text">
+              <h1 class="header__title">Hola, Elena</h1>
+              <p class="header__subtitle">Administradora · Estado general del sistema</p>
+            </div>
+            <button aria-label="Notificaciones"><img src="assets/icons/bell.svg" width="21" height="21" alt=""></button>
+          </div>
+        </header>
+
+        <div class="content">
+          <div class="card card--soft">
+            <div class="info-row">
+              <img src="assets/icons/server.svg" width="29" height="29" alt="">
+              <div class="info-row__text" style="display:flex;flex-direction:column;gap:4px">
+                <p style="font-size:17px;font-weight:800">Servicios disponibles</p>
+                <p class="text-12 text-primary">Última revisión: 19 oct 2026, 09:41</p>
+              </div>
+            </div>
+            <p class="text-11 text-muted">La conectividad de cada dispositivo puede variar.</p>
+          </div>
+
+          <div class="notice">
+            <img src="assets/icons/info.svg" width="17" height="17" alt="">
+            <p>Datos demostrativos · Sin uso operativo</p>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <p class="stat__label">Usuarios activos</p>
+              <p class="stat__value">28 / 30</p>
+              <p class="stat__note">2 cuentas suspendidas</p>
+            </div>
+            <div class="stat">
+              <p class="stat__label">Incidentes activos</p>
+              <p class="stat__value">12</p>
+              <p class="stat__note">48 reportados · 1–19 oct</p>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Gestión del sistema</h3>
+          </div>
+
+          <div class="card list">
+            <a href="#admin-incidentes" class="info-row">
+              <img src="assets/icons/clipboard-list.svg" width="24" height="24" alt="">
+              <div class="info-row__text">
+                <p class="info-row__title">Administrar incidentes</p>
+                <p class="info-row__subtitle">Estados, correcciones y archivo</p>
+              </div>
+              <span class="info-row__action">12 activos</span>
+            </a>
+            <div class="separator"></div>
+            <a href="#admin-usuarios" class="info-row">
+              <img src="assets/icons/users.svg" width="24" height="24" alt="">
+              <div class="info-row__text">
+                <p class="info-row__title">Usuarios</p>
+                <p class="info-row__subtitle">Altas, suspensiones y cuentas</p>
+              </div>
+              <span class="info-row__action">30 cuentas</span>
+            </a>
+            <div class="separator"></div>
+            <a href="#admin-roles" class="info-row">
+              <img src="assets/icons/shield-check-24.svg" width="24" height="24" alt="">
+              <div class="info-row__text">
+                <p class="info-row__title">Roles y permisos</p>
+                <p class="info-row__subtitle">Rescatista, coordinador y administrador</p>
+              </div>
+              <span class="info-row__action">3 roles</span>
+            </a>
+            <div class="separator"></div>
+            <a href="#admin-roles" class="info-row">
+              <img src="assets/icons/history.svg" width="24" height="24" alt="">
+              <div class="info-row__text">
+                <p class="info-row__title">Bitácora de actividad</p>
+                <p class="info-row__subtitle">Trazabilidad de cambios y accesos</p>
+              </div>
+              <img src="assets/icons/chevron-right.svg" width="17" height="17" alt="">
+            </a>
+          </div>
+
+          <div class="section-header">
+            <h3 class="section-header__title">Actividad reciente</h3>
+            <a href="#admin-roles" class="link">Ver bitácora</a>
+          </div>
+
+          <div class="card activity">
+            <div class="timeline__event">
+              <span class="timeline__time">09:38</span>
+              <div>
+                <p class="timeline__title">Nuevo reporte local</p>
+                <p class="timeline__desc">Ana Torres · INC-026-049 · Por sincronizar</p>
+              </div>
+            </div>
+            <div class="timeline__event">
+              <span class="timeline__time">09:29</span>
+              <div>
+                <p class="timeline__title">Estado de incidente actualizado</p>
+                <p class="timeline__desc">Ana Torres · INC-026-041 · En atención</p>
+              </div>
+            </div>
+            <div class="timeline__event">
+              <span class="timeline__time">09:18</span>
+              <div>
+                <p class="timeline__title">Misión asignada a Bravo</p>
+                <p class="timeline__desc">Luis Méndez · INC-026-041</p>
+              </div>
+            </div>
+          </div>
+
+          <a href="#dashboard" class="btn btn--secondary">
+            <img src="assets/icons/chart.svg" width="19" height="19" alt="">
+            Ver resumen de coordinación
+          </a>
+        </div>
+
+        <nav class="tabbar" data-tabbar="admin" data-active="inicio"></nav>
+      </div>
+    </section>
+  </div>
+</section>
+
+<!-- ##########################################################
+     09 COMPONENTES · BOTONES REUTILIZABLES
+     ########################################################## -->
+<section class="group" id="g09">
+  <h2 class="group__title">09 Componentes · Botones reutilizables</h2>
+  <div class="group__row">
+    <div class="library">
+      <figure class="library__item">
+        <figcaption>Botón / Primario / arrow-right</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/arrow-right.svg" width="19" height="19" alt="">
+          Iniciar sesión
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Primario / navigation</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/navigation.svg" width="19" height="19" alt="">
+          Iniciar ruta al incidente · 1,8 km
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Primario / plus</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/plus-white.svg" width="19" height="19" alt="">
+          Registrar incidente
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Primario / clipboard-check</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/clipboard-check.svg" width="19" height="19" alt="">
+          Actualizar estado
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Primario / send</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/send.svg" width="19" height="19" alt="">
+          Registrar incidente
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Secundario / Sin icono</figcaption>
+        <button class="btn btn--secondary">
+          Guardar borrador
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Primario / file-down</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/file-down.svg" width="19" height="19" alt="">
+          Generar reporte PDF
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Secundario / table-2</figcaption>
+        <button class="btn btn--secondary">
+          <img src="assets/icons/table-btn.svg" width="19" height="19" alt="">
+          CSV · Datos
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Secundario / map-pinned</figcaption>
+        <button class="btn btn--secondary">
+          <img src="assets/icons/map-pinned-btn.svg" width="19" height="19" alt="">
+          GeoJSON
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Primario / refresh-cw</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/refresh-cw-white.svg" width="19" height="19" alt="">
+          Comprobar conexión y sincronizar
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Secundario / log-out</figcaption>
+        <button class="btn btn--secondary">
+          <img src="assets/icons/log-out.svg" width="19" height="19" alt="">
+          Cerrar sesión
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Secundario / history</figcaption>
+        <button class="btn btn--secondary">
+          <img src="assets/icons/history-btn.svg" width="19" height="19" alt="">
+          Consultar bitácora completa
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Primario / user-plus</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/user-plus.svg" width="19" height="19" alt="">
+          Invitar usuario
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Primario / user-cog</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/user-cog.svg" width="19" height="19" alt="">
+          Gestionar asignación de roles
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Secundario / map</figcaption>
+        <button class="btn btn--secondary">
+          <img src="assets/icons/map-btn.svg" width="19" height="19" alt="">
+          Continuar sin conexión
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Primario / clipboard-list</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/clipboard-list-white.svg" width="19" height="19" alt="">
+          Ver incidente registrado
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Primario / house</figcaption>
+        <button class="btn btn--primary">
+          <img src="assets/icons/house-white.svg" width="19" height="19" alt="">
+          Volver a mi inicio operativo
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Secundario / message-circle</figcaption>
+        <button class="btn btn--secondary">
+          <img src="assets/icons/message-circle.svg" width="19" height="19" alt="">
+          Contactar a coordinación
+        </button>
+      </figure>
+      <figure class="library__item">
+        <figcaption>Botón / Secundario / chart-no-axes-combined</figcaption>
+        <button class="btn btn--secondary">
+          <img src="assets/icons/chart.svg" width="19" height="19" alt="">
+          Ver resumen de coordinación
+        </button>
+      </figure>
+    </div>
+  </div>
+</section>
+</main>
+<script src="js/app.js"></script>
+</body>
+</html>

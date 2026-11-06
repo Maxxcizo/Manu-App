@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Screen Flow Map · Bosque La Primavera</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Page size is set from JS (see LAYOUT) so the whole map prints on ONE page */
+  :root {
+    --ink: #172f40; --muted: #627480; --border: #dfe6e7; --bg: #f4f6f6;
+    --nav: #175b47; --error: #b93e34; --back: #8a9aa5; --push: #2c6388;
+    --AUTH: #6b4fbb; --API: #2c6388; --GEO: #175b47; --FILES: #98601e; --SYNC: #b93e34; --DEVICE: #627480;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #fff; font-family: "Inter", system-ui, sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  #map { position: relative; }
+
+  /* Header */
+  .header { position: absolute; left: 60px; top: 50px; right: 60px; display: flex; gap: 60px; align-items: flex-start; }
+  .header h1 { font-size: 64px; font-weight: 800; line-height: 1.05; }
+  .header .sub { font-size: 22px; color: var(--muted); margin-top: 12px; line-height: 1.5; }
+  .legend { margin-left: auto; display: grid; grid-template-columns: auto auto auto; gap: 22px 48px; font-size: 21px; }
+  .legend h4 { grid-column: 1 / -1; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: -10px; }
+  .legend .item { display: flex; align-items: center; gap: 12px; white-space: nowrap; }
+
+  /* Lanes */
+  .lane { position: absolute; left: 30px; right: 30px; border-radius: 28px; }
+  .lane__label { position: absolute; right: 0; top: 0; bottom: 0; width: 120px; display: flex; align-items: center; justify-content: center; }
+  .lane__label span { transform: rotate(-90deg); white-space: nowrap; font-size: 30px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
+  .lane__label small { display: block; font-size: 16px; font-weight: 500; letter-spacing: 0; text-transform: none; text-align: center; opacity: .8; }
+
+  /* Screen nodes */
+  .node { position: absolute; display: flex; gap: 16px; padding: 16px; background: #fff; border: 2px solid var(--border); border-radius: 22px; box-shadow: 0 6px 24px rgba(20,45,64,.08); }
+  .node--error { border-color: #e7b2ac; background: #fff8f6; }
+  .node--entry { border-color: var(--nav); }
+  .node img.thumb { width: 200px; height: auto; align-self: flex-start; border-radius: 14px; box-shadow: 0 2px 10px rgba(20,45,64,.15); }
+  .card { width: 380px; font-size: 13.5px; line-height: 1.4; display: flex; flex-direction: column; gap: 10px; }
+  .card__code { font-size: 13px; font-weight: 800; color: #fff; background: var(--ink); border-radius: 6px; padding: 2px 8px; align-self: flex-start; }
+  .node--error .card__code { background: var(--error); }
+  .card__title { font-size: 22px; font-weight: 800; line-height: 1.15; }
+  .card__en { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .card h5 { font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .card ul { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+  .card .contents li::before { content: "• "; color: var(--muted); }
+  .act { display: flex; gap: 7px; align-items: flex-start; }
+  .act__n { flex: none; width: 20px; height: 20px; border-radius: 50%; color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .act__to { font-weight: 700; white-space: nowrap; }
+  .act__to.inline { color: var(--muted); font-weight: 500; font-style: italic; }
+  .be { display: flex; flex-direction: column; gap: 4px; }
+  .chip { display: flex; gap: 6px; align-items: baseline; font-size: 12px; }
+  .chip b { flex: none; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 6px; border-radius: 5px; letter-spacing: .04em; }
+  .chip code { font-family: "SF Mono", Menlo, monospace; font-size: 11.5px; color: var(--ink); }
+
+  @media print { .node, .node img.thumb { box-shadow: none !important; } }
+  svg#edges { position: absolute; left: 0; top: 0; pointer-events: none; }
+  .badge text { font: 800 12px Inter, sans-serif; fill: #fff; }
+
+  /* Footer */
+  .footer { position: absolute; left: 60px; right: 60px; display: grid; grid-template-columns: 1.7fr 1fr; gap: 60px; }
+  .footer h3 { font-size: 34px; font-weight: 800; margin-bottom: 18px; }
+  table { width: 100%; border-collapse: collapse; font-size: 19px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+  td .codes { font-weight: 700; }
+  .notes { font-size: 20px; line-height: 1.55; display: flex; flex-direction: column; gap: 14px; }
+  .notes p b { color: var(--nav); }
+</style>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+// ------------------------------------------------------------------
+// Back-end services (from Stage 1 · "Required back-end services")
+// ------------------------------------------------------------------
+const SERVICES = {
+  AUTH:   "Authentication & Authorization (OAuth 2.0 · RBAC)",
+  API:    "REST / GraphQL API layer (business logic, CRUD, filters)",
+  GEO:    "Geospatial database (PostGIS / MongoDB Geospatial)",
+  FILES:  "File & asset storage (S3 / Firebase · map tiles, PDFs, photos)",
+  SYNC:   "Sync & Queue engine (offline uploads, retries)",
+  DEVICE: "On-device (GPS sensor, local cache / queue)",
+};
+
+const KINDS = {
+  nav:   { color: "#175b47", dash: "",       label: "Navigation (user action)" },
+  error: { color: "#b93e34", dash: "14 8",   label: "Error / restricted path" },
+  back:  { color: "#8a9aa5", dash: "3 7",    label: "Back / tab-bar navigation" },
+  push:  { color: "#2c6388", dash: "18 6 3 6", label: "System-triggered (push / redirect)" },
+};
+
+// ------------------------------------------------------------------
+// Screens. col/row place the node on the grid. Actions with `to`
+// draw an arrow; actions without `to` happen inside the screen.
+// ------------------------------------------------------------------
+const SCREENS = [
+  // ---------- ENTRY ----------
+  { id: "login", code: "A1", col: 0, row: 2, type: "entry",
+    title: "Inicio de sesión", en: "Login · 01 Acceso",
+    purpose: "Authenticate staff with their institutional account and route each user to the home of their role.",
+    contents: ["Institutional e-mail and password (show / hide)", "Remember session, recover access", "Demo-environment disclaimer"],
+    actions: [
+      { t: "Sign in as Field Responder", to: "inicio-rescatista", k: "push" },
+      { t: "Sign in as Coordinator", to: "dashboard", k: "push" },
+      { t: "Sign in as Administrator", to: "inicio-admin", k: "push" },
+      { t: "Wrong credentials / locked account", inline: "inline error message", k: "error" },
+      { t: "Recuperar acceso", inline: "reset e-mail sent" },
+    ],
+    be: [["AUTH", "POST /auth/token (OAuth 2.0 + PKCE) → JWT with role claim"], ["AUTH", "POST /auth/recover"], ["DEVICE", "Secure storage of refresh token"]] },
+
+  // ---------- FIELD RESPONDER ----------
+  { id: "inicio-rescatista", code: "R1", col: 1, row: 0,
+    title: "Inicio del rescatista", en: "Responder home · 08 Perfiles",
+    purpose: "Show the responder's active mission, quick actions and own position, even offline.",
+    contents: ["Duty status and shift", "Active mission card (INC-026-041, ETA 12 min)", "Quick actions: Reportar / Abrir mapa", "Mini-map with own GPS position", "Offline banner (3 pending changes)"],
+    actions: [
+      { t: "Ver misión y actualizar estado", to: "detalle" },
+      { t: "Reportar", to: "registro" },
+      { t: "Abrir mapa / Centrar mapa", to: "mapa" },
+      { t: "Tab · Incidentes", to: "incidentes", k: "back" },
+      { t: "Tab · Perfil", to: "perfil", k: "back" },
+    ],
+    be: [["API", "GET /me/mission (active assignment)"], ["GEO", "GET /incidents/{id}/location"], ["FILES", "GET /tiles/{z}/{x}/{y} (cached)"], ["DEVICE", "GPS fix + pending queue count"], ["SYNC", "GET /sync/status"]] },
+
+  { id: "mapa", code: "R2", col: 2, row: 0,
+    title: "Mapa operativo", en: "Operational GIS map · 02 Operación",
+    purpose: "Interactive GIS map of trails, access roads and georeferenced incident pins.",
+    contents: ["Search (trail, zone, incident)", "Base layers: forest, contour lines, streams, roads, trails", "Pins by type & severity (rescue, smoke, search)", "Zoom / layers / locate controls, legend", "Selected-incident card"],
+    actions: [
+      { t: "Tap pin / Ver detalle", to: "detalle" },
+      { t: "Pin of another incident", to: "incidentes" },
+      { t: "Iniciar ruta al incidente · 1,8 km", inline: "route drawn on map" },
+      { t: "Search / layers / zoom", inline: "map updates" },
+      { t: "Tab · Inicio", to: "inicio-rescatista", k: "back" },
+    ],
+    be: [["FILES", "GET /tiles/{z}/{x}/{y} (base map, offline packs)"], ["GEO", "GET /incidents?bbox=&status=active"], ["GEO", "GET /trails?q= (search)"], ["API", "GET /routes?from=&to= (trail routing)"], ["DEVICE", "GPS (my location)"]] },
+
+  { id: "detalle", code: "R4", col: 3, row: 0,
+    title: "Detalle de incidente", en: "Incident detail · 02 Operación",
+    purpose: "Full incident record: location, assigned team and timeline; update the mission status.",
+    contents: ["Severity & status tags", "Description, location, GPS precision", "Mini-map with incident and own position", "Assigned brigade with ETA", "Timeline of events"],
+    actions: [
+      { t: "Ver mapa", to: "mapa", k: "back" },
+      { t: "Actualizar estado", inline: "status changes (queued if offline)" },
+      { t: "Añadir avance", inline: "new timeline event" },
+      { t: "Back (←)", to: "incidentes", k: "back" },
+      { t: "Edit without permission (RBAC)", to: "acceso-denegado", k: "error" },
+    ],
+    be: [["API", "GET /incidents/{id}"], ["API", "GET /incidents/{id}/timeline"], ["GEO", "GET /brigades/{id}/position"], ["API", "PATCH /incidents/{id}/status · POST /incidents/{id}/events"], ["SYNC", "Enqueue changes when offline"]] },
+
+  { id: "incidentes", code: "R3", col: 2, row: 1,
+    title: "Lista de incidentes", en: "Incident list · 02 Operación",
+    purpose: "Prioritized list of incidents to find and open a case quickly.",
+    contents: ["Search by name, folio or zone", "Filter chips: Activos 12 / Misiones 1 / Cerrados 36", "Sort: priority and most recent", "Incident cards (severity, status, owner)"],
+    actions: [
+      { t: "Tap incident card", to: "detalle" },
+      { t: "Registrar incidente", to: "registro" },
+      { t: "Search / filters", inline: "list re-queried" },
+      { t: "Tab · Mapa", to: "mapa", k: "back" },
+    ],
+    be: [["API", "GET /incidents?status=&q=&sort=priority&page="], ["GEO", "Zone names resolved from coordinates"], ["DEVICE", "Cached list for offline reading"]] },
+
+  { id: "registro", code: "R5", col: 3, row: 1,
+    title: "Registrar incidente", en: "Register incident · 02 Operación",
+    purpose: "Capture a new incident in the field with location, severity and evidence.",
+    contents: ["Safety notice", "Type, severity (Baja / Media / Alta), description", "Zone / sector and captured GPS (±12 m)", "Photo / file evidence (max 3 × 10 MB)", "Affected people, reporter"],
+    actions: [
+      { t: "Registrar incidente", to: "registro-correcto" },
+      { t: "Missing required fields", inline: "inline validation errors", k: "error" },
+      { t: "Ajustar ubicación en el mapa", to: "mapa", k: "back" },
+      { t: "Guardar borrador", inline: "saved on device" },
+      { t: "Back (←)", to: "incidentes", k: "back" },
+    ],
+    be: [["API", "GET /catalog/incident-types · GET /zones"], ["DEVICE", "GPS capture + camera"], ["FILES", "POST /uploads (pre-signed URL)"], ["API", "POST /incidents"], ["SYNC", "Queued upload when there is no signal"]] },
+
+  { id: "registro-correcto", code: "R6", col: 4, row: 1, type: "state",
+    title: "Registro correcto", en: "Registration success · 07 Estados",
+    purpose: "Confirm that the incident was saved and is pending validation.",
+    contents: ["Success seal", "Folio INC-026-049 and summary", "Status: pending validation", "Offline note (part of 3 pending changes)"],
+    actions: [
+      { t: "Ver incidente registrado", to: "incidentes" },
+      { t: "Volver al mapa", to: "mapa" },
+    ],
+    be: [["API", "Response of POST /incidents (folio, status)"], ["SYNC", "Notify coordination when synced"]] },
+
+  { id: "perfil", code: "R7", col: 1, row: 2,
+    title: "Mi perfil", en: "User profile · 05 Cuenta",
+    purpose: "Account information and device preferences for the responder.",
+    contents: ["Identity, role and brigade", "Toggles: mission notifications, share location, mobile data", "Sync & maps, accessibility, language, security", "Log out"],
+    actions: [
+      { t: "Sincronización y mapas", to: "sincronizacion" },
+      { t: "Admin-only function (roles)", to: "acceso-denegado", k: "error" },
+      { t: "Cerrar sesión", to: "login", k: "back" },
+      { t: "Toggle preferences", inline: "saved instantly" },
+    ],
+    be: [["API", "GET /me · PATCH /me/preferences"], ["AUTH", "POST /auth/logout (revoke tokens)"], ["DEVICE", "Accessibility / high-contrast mode"]] },
+
+  { id: "sincronizacion", code: "R8", col: 2, row: 2,
+    title: "Sincronización", en: "Offline sync · 04 Conectividad",
+    purpose: "Show what is stored on the device and send pending changes when there is signal.",
+    contents: ["Connection mode and last sync time", "Pending changes queue (3)", "Downloaded map packages", "Local storage usage (80 / 500 MB)"],
+    actions: [
+      { t: "Comprobar conexión y sincronizar (ok)", inline: "queue emptied" },
+      { t: "Sync fails / signal lost", to: "error", k: "error" },
+      { t: "Gestionar mapas", inline: "download / delete packs" },
+      { t: "Back (←)", to: "perfil", k: "back" },
+    ],
+    be: [["SYNC", "POST /sync/batch (queued incidents, events, positions)"], ["FILES", "GET /tiles/packages (offline areas)"], ["DEVICE", "Local queue (IndexedDB / SQLite)"]] },
+
+  { id: "error", code: "E1", col: 3, row: 2, type: "error",
+    title: "Error recuperable", en: "Recoverable error CON-02 · 07 Estados",
+    purpose: "Explain that the sync failed, but the data is safe and work can continue offline.",
+    contents: ["Illustration and code CON-02", "3 protected changes", "Last good sync / last attempt", "Safety advice (find signal)"],
+    actions: [
+      { t: "Reintentar sincronización", to: "sincronizacion" },
+      { t: "Continuar sin conexión", to: "inicio-rescatista" },
+      { t: "Consultar ayuda", inline: "help article" },
+    ],
+    be: [["SYNC", "Retry with exponential back-off"], ["DEVICE", "Changes kept in local queue"]] },
+
+  { id: "acceso-denegado", code: "E2", col: 4, row: 2, type: "error",
+    title: "Acceso denegado", en: "Access denied SEG-403 · 07 Estados",
+    purpose: "Tell the user that a function needs another role, without losing the session.",
+    contents: ["Shield illustration, code SEG-403", "Current user and role", "What this role can do", "Guidance: request a role review"],
+    actions: [
+      { t: "Volver a mi inicio operativo", to: "inicio-rescatista" },
+      { t: "Contactar a coordinación", inline: "message to coordinator" },
+    ],
+    be: [["AUTH", "RBAC check returns HTTP 403"], ["API", "POST /access-requests (role review)"]] },
+
+  // ---------- COORDINATOR ----------
+  { id: "dashboard", code: "C1", col: 1, row: 3,
+    title: "Resumen operativo", en: "Coordinator dashboard · 03 Coordinación",
+    purpose: "Operational summary of the period to decide where to send resources.",
+    contents: ["KPIs: active incidents, brigades in field, reports, avg. response", "Incidents per interval (bar chart)", "Response status (donut)", "Available brigades"],
+    actions: [
+      { t: "Comparar →", to: "comparacion" },
+      { t: "Asignar → (available brigades)", to: "brigadas" },
+      { t: "Tab · Zonas", to: "zonas", k: "back" },
+      { t: "Tab · Informes", to: "reportes", k: "back" },
+      { t: "Too little data", inline: "data-confidence alert", k: "error" },
+    ],
+    be: [["API", "GET /stats/summary?from=&to="], ["GEO", "Aggregations by zone / interval"], ["API", "GET /brigades?status=available"]] },
+
+  { id: "comparacion", code: "C2", col: 2, row: 3,
+    title: "Comparación histórica", en: "Period comparison · 03 Coordinación",
+    purpose: "Compare equivalent periods to detect trends and critical hotspots.",
+    contents: ["Period chips: monthly / quarterly / custom", "Current vs. reference period", "Paired bar chart (volume)", "Indicator table and insight"],
+    actions: [
+      { t: "Change period", inline: "charts recalculated (< 5 s)" },
+      { t: "Insufficient data", inline: "data-confidence alert", k: "error" },
+      { t: "Back (←)", to: "dashboard", k: "back" },
+    ],
+    be: [["API", "GET /stats/compare?current=&reference="], ["GEO", "Spatio-temporal aggregation queries"]] },
+
+  { id: "zonas", code: "C3", col: 3, row: 3,
+    title: "Zonas críticas", en: "Critical zones · 03 Coordinación",
+    purpose: "See where incidents concentrate and which zones have priority.",
+    contents: ["Filters: severity / concentration / brigades", "Map with severity polygons and markers", "Severity legend", "Priority list of zones A–C"],
+    actions: [
+      { t: "Tap marker / zone", to: "detalle" },
+      { t: "Filters, zoom, layers", inline: "map updates" },
+      { t: "Tab · Brigadas", to: "brigadas", k: "back" },
+    ],
+    be: [["GEO", "GET /zones/hotspots?metric=severity"], ["GEO", "GET /incidents?bbox="], ["FILES", "GET /tiles/{z}/{x}/{y}"]] },
+
+  { id: "brigadas", code: "C4", col: 4, row: 3,
+    title: "Brigadas y misiones", en: "Brigade assignment · 03 Coordinación",
+    purpose: "Assign missions to available brigades and follow them in the field.",
+    contents: ["Availability: 4 in field, 2 available", "New assignment form (brigade, instruction)", "Field tracking cards: status, GPS time, progress"],
+    actions: [
+      { t: "Asignar misión", to: "inicio-rescatista", k: "push" },
+      { t: "Ver mapa", to: "zonas", k: "back" },
+      { t: "Tab · Informes", to: "reportes", k: "back" },
+    ],
+    be: [["API", "POST /missions (+ push notification)"], ["GEO", "GET /brigades/positions (live / polling)"], ["API", "GET /incidents?status=pending"]] },
+
+  { id: "reportes", code: "C5", col: 5, row: 3,
+    title: "Reportes", en: "Reports & exports · 04 Informes",
+    purpose: "Generate reports and export filtered data for analysis and backups.",
+    contents: ["Report type, period, coverage", "Generate PDF", "Other formats: CSV, GeoJSON", "Recent files (ready to download)"],
+    actions: [
+      { t: "Generar reporte PDF", inline: "async job → file ready" },
+      { t: "CSV · Datos / GeoJSON", inline: "export download" },
+      { t: "Download recent file", inline: "opens file" },
+      { t: "Tab · Resumen", to: "dashboard", k: "back" },
+    ],
+    be: [["API", "POST /reports (async job)"], ["FILES", "GET signed URL of PDF / CSV"], ["GEO", "GET /export.geojson?from=&to="]] },
+
+  // ---------- ADMIN ----------
+  { id: "inicio-admin", code: "AD1", col: 1, row: 4,
+    title: "Inicio del administrador", en: "Admin home · 08 Perfiles",
+    purpose: "System health and entry point to user, role and record management.",
+    contents: ["Service availability", "KPIs: active users, active incidents", "System management list", "Recent activity (audit)"],
+    actions: [
+      { t: "Administrar incidentes", to: "admin-incidentes" },
+      { t: "Usuarios", to: "admin-usuarios" },
+      { t: "Roles y permisos", to: "admin-roles" },
+      { t: "Ver resumen de coordinación", to: "dashboard" },
+    ],
+    be: [["API", "GET /health"], ["API", "GET /stats/admin"], ["API", "GET /audit?limit=3"]] },
+
+  { id: "admin-incidentes", code: "AD2", col: 2, row: 4,
+    title: "Administrar incidentes", en: "Incident management · 06 Administración",
+    purpose: "Correct, archive and audit incident records. Records are archived, never deleted.",
+    contents: ["Search and status filters", "Selectable records (bulk actions)", "Edit / more options per record", "Last audited change"],
+    actions: [
+      { t: "Editar", to: "detalle" },
+      { t: "Archive (⋯) with reason", inline: "record archived" },
+      { t: "Consultar bitácora completa", inline: "audit log" },
+      { t: "Tab · Usuarios", to: "admin-usuarios", k: "back" },
+    ],
+    be: [["API", "GET /incidents?scope=admin"], ["API", "PATCH /incidents/{id} · POST /incidents/{id}/archive"], ["API", "GET /audit?entity=incident"]] },
+
+  { id: "admin-usuarios", code: "AD3", col: 3, row: 4,
+    title: "Usuarios", en: "User management · 06 Administración",
+    purpose: "Invite, suspend and reactivate accounts, and see each person's role.",
+    contents: ["Invite user", "Search and filters (all / active / suspended)", "User cards: role, brigade, status", "Note: suspending revokes sessions"],
+    actions: [
+      { t: "Invitar usuario", inline: "invitation e-mail" },
+      { t: "Suspend / reactivate (⋮)", inline: "status changes" },
+      { t: "Tab · Ajustes", to: "admin-roles", k: "back" },
+    ],
+    be: [["API", "GET /users?status=&q="], ["AUTH", "POST /users/invite · PATCH /users/{id}/status (revoke)"]] },
+
+  { id: "admin-roles", code: "AD4", col: 4, row: 4,
+    title: "Roles y permisos", en: "Roles & permissions · 06 Administración",
+    purpose: "Show the 3 roles and the permission matrix (least privilege).",
+    contents: ["Role cards: Rescatista 24, Coordinador 4, Administrador 2", "Permission matrix RES / COO / ADM", "Audited configuration"],
+    actions: [
+      { t: "Gestionar asignación de roles", to: "admin-usuarios" },
+      { t: "Back (←)", to: "inicio-admin", k: "back" },
+    ],
+    be: [["AUTH", "GET /roles · GET /permissions"], ["AUTH", "PUT /users/{id}/role"]] },
+];
+
+const LANES = [
+  { name: "Field Responder", sub: "Paramedic volunteer · 20–35", rows: [0, 2], color: "#e7f1eb", ink: "#175b47" },
+  { name: "Coordinator",     sub: "Dispatch manager · 35–40",   rows: [3, 3], color: "#e9f1f8", ink: "#2c6388" },
+  { name: "Administrator",   sub: "Data & admin operator · 22–40", rows: [4, 4], color: "#f2eefb", ink: "#6b4fbb" },
+];
+
+// ------------------------------------------------------------------
+// Layout
+// ------------------------------------------------------------------
+const L = { left: 190, top: 420, colW: 790, rowH: 900, nodeMaxH: 740, cols: 6, rows: 5, footerH: 600 };
+const W = L.left + L.cols * L.colW + 40;
+const H = L.top + L.rows * L.rowH + L.footerH;
+const map = document.getElementById("map");
+map.style.width = W + "px";
+map.style.height = H + "px";
+document.head.insertAdjacentHTML("beforeend", `<style>@page { size: ${W}px ${H}px; margin: 0 }</style>`);
+
+const byId = Object.fromEntries(SCREENS.map((s) => [s.id, s]));
+const pos = (s) => ({ x: L.left + s.col * L.colW, y: L.top + s.row * L.rowH });
+const kindOf = (a) => a.k || "nav";
+
+// Header + legend
+map.insertAdjacentHTML("beforeend", `
+  <div class="header">
+    <div>
+      <h1>Screen Flow Map<br>Bosque La Primavera · Respuesta y Monitoreo</h1>
+      <p class="sub">Stage 2 · Mobile Development · 20 screens, 3 roles, 6 back-end sources<br>
+      Santiago Vargas · Jesús Márquez · Karla Martínez · Gael Cervantes · Isaac Chávez · Oct 2026</p>
+    </div>
+    <div class="legend">
+      <h4>Arrows</h4>
+      ${Object.values(KINDS).map((k) => `<span class="item"><svg width="70" height="14"><line x1="2" y1="7" x2="58" y2="7" stroke="${k.color}" stroke-width="4" stroke-dasharray="${k.dash}"/><path d="M58 1 L68 7 L58 13 Z" fill="${k.color}"/></svg>${k.label}</span>`).join("")}
+      <span class="item"><svg width="24" height="24"><circle cx="12" cy="12" r="11" fill="#175b47"/><text x="12" y="16" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">2</text></svg>Number = action in the screen card</span>
+      <h4>Back-end sources</h4>
+      ${Object.entries(SERVICES).map(([k, v]) => `<span class="item"><span class="chip"><b style="background:var(--${k})">${k}</b></span>${v}</span>`).join("")}
+    </div>
+  </div>`);
+
+// Lanes
+for (const lane of LANES) {
+  const y = L.top + lane.rows[0] * L.rowH - 40;
+  const h = (lane.rows[1] - lane.rows[0] + 1) * L.rowH - 40;
+  map.insertAdjacentHTML("beforeend", `
+    <div class="lane" style="top:${y}px;height:${h}px;background:${lane.color};left:${L.left + L.colW - 130}px">
+      <div class="lane__label" style="color:${lane.ink}"><span>${lane.name}<small>${lane.sub}</small></span></div>
+    </div>`);
+}
+map.insertAdjacentHTML("beforeend", `
+  <div class="lane" style="top:${L.top - 40}px;height:${L.rows * L.rowH - 40}px;width:${L.colW - 20}px;background:#f4f6f6">
+    <div class="lane__label" style="color:#172f40"><span>Entry<small>all roles</small></span></div>
+  </div>`);
+
+// Nodes
+for (const s of SCREENS) {
+  const p = pos(s);
+  const k = s.type === "error" ? "node--error" : s.type === "entry" ? "node--entry" : "";
+  map.insertAdjacentHTML("beforeend", `
+    <div class="node ${k}" id="n-${s.id}" style="left:${p.x}px;top:${p.y}px">
+      <img class="thumb" src="thumbs/${s.id}.png" alt="">
+      <div class="card">
+        <span class="card__code">${s.code}</span>
+        <div><p class="card__title">${s.title}</p><p class="card__en">${s.en}</p></div>
+        <div><h5>Purpose</h5><p>${s.purpose}</p></div>
+        <div><h5>Contents</h5><ul class="contents">${s.contents.map((c) => `<li>${c}</li>`).join("")}</ul></div>
+        <div><h5>Actions</h5><ul>${s.actions.map((a, i) => `
+          <li class="act"><span class="act__n" style="background:${KINDS[kindOf(a)].color}">${i + 1}</span>
+          <span>${a.t} → ${a.to ? `<span class="act__to">${byId[a.to].code} ${byId[a.to].title}</span>` : `<span class="act__to inline">${a.inline}</span>`}</span></li>`).join("")}</ul></div>
+        <div><h5>Back-end calls</h5><div class="be">${s.be.map(([svc, call]) => `<span class="chip"><b style="background:var(--${svc})">${svc}</b><code>${call}</code></span>`).join("")}</div></div>
+      </div>
+    </div>`);
+}
+
+// Footer: back-end service → screens
+const footY = L.top + L.rows * L.rowH + 20;
+const uses = Object.fromEntries(Object.keys(SERVICES).map((k) => [k, []]));
+SCREENS.forEach((s) => new Set(s.be.map(([k]) => k)).forEach((k) => uses[k].push(s.code)));
+map.insertAdjacentHTML("beforeend", `
+  <div class="footer" style="top:${footY}px">
+    <div>
+      <h3>Where the data comes from (back-end services · Stage 1)</h3>
+      <table>
+        <tr><th>Source</th><th>Role in the system</th><th>Screens that call it</th></tr>
+        ${Object.entries(SERVICES).map(([k, v]) => `<tr><td><span class="chip"><b style="background:var(--${k})">${k}</b></span></td><td>${v}</td><td class="codes">${uses[k].join(" · ")}</td></tr>`).join("")}
+      </table>
+    </div>
+    <div class="notes">
+      <h3>Notes</h3>
+      <p><b>Offline-first.</b> Field screens (R1–R8) read from the local cache and write to a local queue. The Sync &amp; Queue engine sends the queue when there is signal; if it fails, the user goes to E1 and nothing is lost.</p>
+      <p><b>RBAC.</b> Every API call carries the JWT from A1. If the role lacks a permission, the API answers 403 and the app shows E2 (SEG-403).</p>
+      <p><b>Data confidence.</b> C1/C2 show an alert when the selected period has too few records for a reliable comparison (Stage 1 NFR).</p>
+      <p><b>Performance targets.</b> Spatial queries and period comparisons &lt; 5 s; up to 50 concurrent field operators and dispatchers.</p>
+    </div>
+  </div>`);
+
+// ------------------------------------------------------------------
+// Edges: orthogonal "metro" routing.
+// Leave source from its bottom → run along the corridor under the
+// source row → climb/descend in the gutter left of the target column
+// → enter the target from its left side.
+// ------------------------------------------------------------------
+function drawEdges() {
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
+  svg.id = "edges";
+  svg.setAttribute("width", W);
+  svg.setAttribute("height", H);
+  svg.innerHTML = `<defs>${Object.entries(KINDS).map(([k, v]) => `<marker id="m-${k}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="${v.color}"/></marker>`).join("")}</defs>`;
+  const rect = (id) => {
+    const el = document.getElementById("n-" + id);
+    return { x: el.offsetLeft, y: el.offsetTop, w: el.offsetWidth, h: el.offsetHeight };
+  };
+  const corridorSlots = {}, gutterSlots = {}, entrySlots = {};
+  const take = (bag, key) => (bag[key] = (bag[key] ?? -1) + 1);
+  const lines = [], badges = [];
+
+  for (const s of SCREENS) {
+    const a = rect(s.id);
+    s.actions.forEach((act, i) => {
+      if (!act.to) return;
+      const t = byId[act.to], b = rect(act.to), k = KINDS[kindOf(act)];
+      const sx = a.x + 40 + i * 30;
+      const sy = a.y + a.h;
+      const cy = L.top + s.row * L.rowH + L.nodeMaxH + 30 + take(corridorSlots, s.row) * 9;
+      const gx = b.x - 24 - take(gutterSlots, t.col) * 9;
+      const ey = b.y + 60 + take(entrySlots, t.id) * 22;
+      const d = `M${sx},${sy} V${cy} H${gx} V${ey} H${b.x - 3}`;
+      lines.push(`<path d="${d}" fill="none" stroke="${k.color}" stroke-width="3.5" stroke-dasharray="${k.dash}" stroke-linejoin="round" marker-end="url(#m-${kindOf(act)})" opacity=".9"/>`);
+      badges.push(`<g class="badge"><circle cx="${sx}" cy="${sy + 16}" r="12" fill="${k.color}" stroke="#fff" stroke-width="2"/><text x="${sx}" y="${sy + 20}" text-anchor="middle">${i + 1}</text></g>`);
+    });
+  }
+  svg.innerHTML += lines.join("") + badges.join("");
+  map.appendChild(svg);
+}
+
+// Wait for fonts and thumbnails so node sizes are final before routing
+Promise.all([document.fonts.ready, ...[...document.images].map((img) => img.complete ? 0 : new Promise((r) => (img.onload = img.onerror = r)))])
+  .then(drawEdges);
+</script>
+</body>
+</html>

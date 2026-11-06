@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="124" height="124" viewBox="0 0 124 124" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Sello de confirmaci&#195;&#179;n" clip-path="url(#clip0_0_24)">
+<circle id="Halo de confirmaci&#195;&#179;n" cx="62" cy="62" r="62" fill="#E7F1EB"/>
+<circle id="Sello" cx="62" cy="62" r="42" fill="#175B47"/>
+<g id="check">
+<path id="Vector" d="M76.6652 51L56.5006 71.1652L47.3348 61.9992" stroke-linecap="round" stroke="white"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_0_24">
+<rect width="124" height="124" fill="white"/>
+</clipPath>
+</defs>
+</svg>
