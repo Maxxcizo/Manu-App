@@ -1,0 +1,38 @@
+name: tests
+on:
+  pull_request:
+  push:
+    branches: [main, develop]
+
+defaults:
+  run:
+    working-directory: primavera-segura
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm, cache-dependency-path: primavera-segura/package-lock.json }
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      # Jest enforces the 70% line-coverage minimum configured in package.json (Stage 1 standard).
+      - run: npm run test:coverage
+      - run: npm run build:web
+
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci
+      # C10: block release on exploitable dependencies.
+      - run: npm audit --audit-level=high
+      # C03: no secrets in the repo history.
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
