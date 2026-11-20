@@ -49,12 +49,29 @@ CI (`.github/workflows/tests.yml`): typecheck, lint, cobertura, build web, `npm 
 ## Estructura
 
 ```
-app/            rutas (Expo Router): login, (app) pestañas, (flow) pantallas sobre las pestañas
-src/lib/        lógica pura y probada: validación, zonas críticas, comparación, exportación
-src/data/       repositorio (Supabase y demo), sesión, datos sintéticos
-src/components/ UI y mapa Leaflet
-supabase/       migraciones SQL
+app/                  rutas (Expo Router)
+  login.tsx           acceso (panel de marca en escritorio)
+  (app)/_layout.tsx   shell de navegación + Stack de pantallas autenticadas
+  (app)/*.tsx         inicio, mapa, incidentes, detalle, registrar, zonas, comparación, informes, usuarios, cuenta
+  +not-found.tsx      ruta desconocida
+src/theme/            tokens: color, tipografía, espaciado, radios, sombras, movimiento, breakpoints
+src/ui/               sistema de diseño (Text, Button, TextField, Select, Chip, Badge, Banner, Toast,
+                      Sheet, DataTable, Page, Panel, estados vacíos/carga, marca, gráficas)
+src/components/       componentes de producto: AppShell, mapa, formulario, detalle, filtros
+src/hooks/            useBreakpoint, useReducedMotion, useIncidentFilters
+src/lib/              lógica pura y probada: validación, zonas, filtros, protocolo del mapa, exportación
+src/data/             repositorio (Supabase y demo), sesión, datos sintéticos
+supabase/             migraciones SQL
 ```
+
+## Sistema de diseño
+
+La dirección visual ("carta topográfica"), los tokens y las decisiones de cada pantalla están en `../docs/REDISENO.md`.
+
+- **Una identidad, tres navegaciones:** barra lateral (≥1024 px), riel (768–1023) y barra inferior de hasta 5 destinos en teléfono.
+- **Tokens:** todos los componentes usan los tokens de `src/theme`. No hay colores sueltos en las pantallas.
+- **Variantes por plataforma:** `Select` (bottom sheet en Android y `<select>` nativo en web) e `IncidentMap` (WebView o iframe sandbox).
+- **Mapa:** Leaflet 1.9.4 con SRI y CSP. Los datos llegan por mensajes validados (`src/lib/map_protocol.ts`), así que filtrar no recarga el mapa. Al tocar un punto se selecciona en la app, y en el formulario se puede tocar el mapa para elegir la ubicación.
 
 ## Convenciones
 

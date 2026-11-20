@@ -3,14 +3,7 @@ import { SEVERITIES, type Incident, type IncidentTypeCode, type Severity } from 
 // SYNTHETIC data, used only until Más Bosque Manu delivers the real records (milestone H1/H2).
 // Every row carries source = 'sintetico' and the UI shows a banner while they are loaded.
 
-export const TRAILS = [
-  'Las Planillas',
-  'El Colli',
-  'Río Caliente',
-  'La Cebada',
-  'Cerro El Tecolote',
-  'Arroyo Seco',
-] as const;
+export { TRAILS } from '../lib/catalog';
 
 const CLUSTERS = [
   { trail: 'Las Planillas', lat: 20.6189, lon: -103.5281, weight: 5 },

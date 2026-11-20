@@ -12,6 +12,7 @@ interface AppState {
   ready: boolean;
   user: Profile | null;
   incidents: Incident[];
+  loading: boolean; // first load of incidents after sign-in
   error: string | null;
   sign_in(email: string, password: string): Promise<void>;
   sign_out(): Promise<void>;
@@ -25,13 +26,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [user, set_user] = useState<Profile | null>(null);
   const [incidents, set_incidents] = useState<Incident[]>([]);
   const [error, set_error] = useState<string | null>(null);
+  const [loaded, set_loaded] = useState(false);
 
   const refresh = useCallback(async () => {
     try {
       set_incidents(await repository.list_incidents());
       set_error(null);
     } catch {
-      set_error('No se pudieron cargar los incidentes. Revisa tu conexión y vuelve a intentar.');
+      set_error('No se pudieron cargar los incidentes. Revisa tu conexión e inténtalo de nuevo.');
+    } finally {
+      set_loaded(true);
     }
   }, []);
 
@@ -52,6 +56,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       ready,
       user,
       incidents,
+      loading: !!user && !loaded,
       error,
       refresh,
       async sign_in(email, password) {
@@ -62,9 +67,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         await repository.sign_out();
         set_user(null);
         set_incidents([]); // nothing persists after logout (C07)
+        set_loaded(false);
       },
     }),
-    [ready, user, incidents, error, refresh],
+    [ready, user, incidents, loaded, error, refresh],
   );
 
   return <Context.Provider value={value}>{children}</Context.Provider>;

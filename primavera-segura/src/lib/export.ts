@@ -1,4 +1,4 @@
-import { type_label } from '../components/labels';
+import { type_label } from './labels';
 import { escape_html } from './map_html';
 import type { Incident } from './types';
 

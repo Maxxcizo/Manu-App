@@ -1,34 +1,29 @@
-import { Ionicons } from '@expo/vector-icons';
-import type React from 'react';
-import { Redirect, Tabs } from 'expo-router';
+import { Redirect, Stack } from 'expo-router';
+import { ActivityIndicator, Platform, View } from 'react-native';
+import { AppShell } from '../../src/components/AppShell';
 import { useApp } from '../../src/data/app_context';
+import { useReducedMotion } from '../../src/hooks/use_reduced_motion';
 import { colors } from '../../src/theme';
-import type { Role } from '../../src/lib/types';
 
-const STAFF: Role[] = ['coordinador', 'administrador'];
-
-function tab_icon(name: React.ComponentProps<typeof Ionicons>['name']) {
-  return function TabIcon({ color, size }: { color: unknown; size: number }) {
-    return <Ionicons name={name} color={String(color)} size={size} />;
-  };
-}
-
+// Every signed-in screen lives in one Stack wrapped by the navigation shell. Using a Stack (not Tabs)
+// keeps all routes reachable, gives Android a real back stack, and lets the shell adapt per breakpoint.
 export default function AppLayout() {
   const { user, ready } = useApp();
+  const reduced = useReducedMotion();
   if (ready && !user) return <Redirect href="/login" />;
-  const role = user?.role;
-  const staff = !!role && STAFF.includes(role);
-  const hidden = { href: null } as const;
-
+  if (!user)
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', backgroundColor: colors.canvas }}>
+        <ActivityIndicator color={colors.bosque} />
+      </View>
+    );
+  const native = Platform.OS !== 'web' && !reduced;
   return (
-    <Tabs screenOptions={{ headerShown: false, tabBarActiveTintColor: colors.primary }}>
-      <Tabs.Screen name="home" options={{ title: staff ? 'Resumen' : 'Inicio', tabBarIcon: tab_icon('home-outline') }} />
-      <Tabs.Screen name="mapa" options={{ title: 'Mapa', tabBarIcon: tab_icon('map-outline') }} />
-      <Tabs.Screen name="incidentes" options={{ title: 'Incidentes', tabBarIcon: tab_icon('warning-outline') }} />
-      <Tabs.Screen name="zonas" options={staff ? { title: 'Zonas', tabBarIcon: tab_icon('layers-outline') } : hidden} />
-      <Tabs.Screen name="reportes" options={staff ? { title: 'Informes', tabBarIcon: tab_icon('document-text-outline') } : hidden} />
-      <Tabs.Screen name="admin" options={role === 'administrador' ? { title: 'Usuarios', tabBarIcon: tab_icon('people-outline') } : hidden} />
-      <Tabs.Screen name="perfil" options={{ title: 'Perfil', tabBarIcon: tab_icon('person-outline') }} />
-    </Tabs>
+    <AppShell role={user.role}>
+      <Stack screenOptions={{ headerShown: false, animation: native ? 'fade' : 'none', contentStyle: { backgroundColor: colors.canvas } }}>
+        <Stack.Screen name="incidente/[id]" options={{ animation: native ? 'slide_from_right' : 'none' }} />
+        <Stack.Screen name="registrar" options={{ animation: native ? 'slide_from_bottom' : 'none' }} />
+      </Stack>
+    </AppShell>
   );
 }
